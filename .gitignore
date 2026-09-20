@@ -1,0 +1,4 @@
+node_modules/
+.breakcase/
+*.tgz
+release/*.zip

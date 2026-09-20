@@ -34,6 +34,12 @@ CSS/images and current form values after server shutdown, and the historical
 renderer/fixed-renderer pair. `pnpm smoke <tarball>` installs the packed artifact
 into a new directory and runs its demo, check and refusal-to-overwrite behavior.
 
+The first hosted run passed its browser tests on macOS but its clean-install
+harness rejected a resolved module path before exercising the installed CLI.
+The containment check now compares canonical filesystem paths, accounting for
+macOS temporary-directory aliases. This was a smoke-harness failure, not evidence
+of a product bug or a complete macOS package pass. The rerun determines that result.
+
 Local first run: 6 browser test groups passed on Windows with Node 24.19.0 and
 Chromium 149.0.7827.55. Hosted CI and publication status are recorded in the release
 notes when actually observed. Passing automated checks does not establish physical

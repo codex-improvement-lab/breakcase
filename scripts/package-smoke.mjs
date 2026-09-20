@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -20,7 +20,10 @@ try {
   await run(process.execPath, [process.env.npm_execpath, "add", path.resolve(tarball), "--ignore-scripts"], temp);
   const require = createRequire(path.join(temp, "package.json"));
   const entry = require.resolve("@codex-improvement-lab/breakcase");
-  assert.ok(entry.startsWith(path.join(temp, "node_modules") + path.sep));
+  // macOS temporary paths may use /var while module resolution uses /private/var.
+  const installedRoot = await realpath(path.join(temp, "node_modules"));
+  const relativeEntry = path.relative(installedRoot, await realpath(entry));
+  assert.ok(relativeEntry && relativeEntry !== ".." && !relativeEntry.startsWith(`..${path.sep}`) && !path.isAbsolute(relativeEntry));
   const cli = path.join(path.dirname(entry), "cli.js");
   const out = path.join(temp, "case");
   const demo = JSON.parse(await run(process.execPath, [cli, "demo", "--out", out, "--json"], temp));

@@ -160,6 +160,10 @@ overflow predicate so an agent does not need to write the capture/oracle/reducer
 bridge every time. Use the existing tools for custom predicates or broader capture.
 Whether this convenience improves complete tasks remains a trial question.
 
+See the [historical public cases](docs/historical-cases.md): an offline table
+handoff, a smaller SingleFile/Lithium result, and two cases where reduction should
+be skipped. These are local reconstructions, not independent adoption evidence.
+
 ## Development and feedback
 
 ```sh

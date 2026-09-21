@@ -1,0 +1,1145 @@
+{
+  "schemaVersion": "breakcase-historical-cases/1",
+  "evidenceClass": "known-answer-local-public-source-reconstruction",
+  "date": "2026-09-21",
+  "productRevision": "6763e7af16573a0868487cf95553d36728739081",
+  "positive": {
+    "case": "B-P01",
+    "admission": {
+      "evidenceClass": "historical-external-css-regression-source-page-reconstruction",
+      "observedAt": "2026-09-21T14:35:05.002Z",
+      "manifest": {
+        "case": "B-P01-simple-css-78",
+        "report": "https://github.com/kevquirk/simple.css/pull/78",
+        "blogRevision": "c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0",
+        "themeRevision": "3baee7d7cb19bf7b5ae367a6722d93a0371eaa24",
+        "cssBefore": "be95124c41bb5e613d72c3a7f8654ae69571a0ea",
+        "cssFixedSource": "92ec2cb69c4f03008b877ee66351615fecbd2e8e",
+        "hugoVersion": "0.96.0",
+        "originalHugoVersion": "unknown; historical CI used latest",
+        "hugoArchiveSha256": "3f609596256f7680ffb6b4e77f91cee7c16202e624b958a17e57086b2677811c",
+        "buildMs": 206,
+        "page": "public/posts/randomness/index.html",
+        "pageSha256": "306855522b9fb30482b78bd3db1f9f3eb9a50650b0446904c45ebe4de634fcb2",
+        "selector": "table",
+        "profile": {
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": true,
+          "hasTouch": true,
+          "colorScheme": "light"
+        },
+        "protocolSha256": "19050c25811e8e4246dc3ebcc594c757e8e1fbef4317090fca0e68e3d761b0ff",
+        "resources": [
+          {
+            "url": "https://raw.githubusercontent.com/splch/blog/c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0/config.yaml",
+            "file": "site/config.yaml",
+            "bytes": 656,
+            "sha256": "19b238f9ff438761ca0432a75387271be42aed93981fb9dbe6fa3ea7d9aa7c10",
+            "elapsedMs": 598
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/blog/c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0/LICENSE",
+            "file": "site/LICENSE",
+            "bytes": 35073,
+            "sha256": "01642453a279cd6a8f2ddd96a58d8d3fd92372a5d59bb06af6c04f159a0dd681",
+            "elapsedMs": 553
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/blog/c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0/content/posts/randomness.md",
+            "file": "site/content/posts/randomness.md",
+            "bytes": 9606,
+            "sha256": "59964d3969733dbe0dda214d837bd6902c99d3d971d0fce3021b73afe3cd4e8b",
+            "elapsedMs": 612
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/blog/c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0/static/images/randomCoefficients.webp",
+            "file": "site/static/images/randomCoefficients.webp",
+            "bytes": 29932,
+            "sha256": "0e721aa1ee1036139f56547aee7ee3341344f2e9124d8b7346b69f4e33161e63",
+            "elapsedMs": 664
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/blog/c8dcdc45e70d654c4399b7b2a8e41ca0b8ee3aa0/static/images/quantumAvalanchePlot.webp",
+            "file": "site/static/images/quantumAvalanchePlot.webp",
+            "bytes": 72870,
+            "sha256": "1d838ee580e6f319464bba6240989b3f32a095bd0e8f899f137cf4ebd24dc07f",
+            "elapsedMs": 656
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/.gitmodules",
+            "file": "site/themes/hugo-simplecss/.gitmodules",
+            "bytes": 112,
+            "sha256": "f3af70653332db4e1efe62d3bb6a9b54c752882afb486b6006dd6b2757b9c3bd",
+            "elapsedMs": 611
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/LICENSE",
+            "file": "site/themes/hugo-simplecss/LICENSE",
+            "bytes": 1084,
+            "sha256": "5b02430662634a0e882afefe7354cfcec472b7244a66dccfc21561eabb5f3b4d",
+            "elapsedMs": 540
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/archetypes/default.md",
+            "file": "site/themes/hugo-simplecss/archetypes/default.md",
+            "bytes": 39,
+            "sha256": "8efd591bcf0a9e5b20e30d0b765958e1889c74aa7b247e94efb4cda94068b443",
+            "elapsedMs": 702
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/404.html",
+            "file": "site/themes/hugo-simplecss/layouts/404.html",
+            "bytes": 44,
+            "sha256": "303e8c1aae6c125587af894874a94c29e407e7111f3acb348d95d60682d0d824",
+            "elapsedMs": 533
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/_default/baseof.html",
+            "file": "site/themes/hugo-simplecss/layouts/_default/baseof.html",
+            "bytes": 222,
+            "sha256": "2af4a5b2e3fbd887b85b6557a9b0605cd64205d3a2bf2d1a7a3b189796de0fa8",
+            "elapsedMs": 528
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/_default/list.html",
+            "file": "site/themes/hugo-simplecss/layouts/_default/list.html",
+            "bytes": 173,
+            "sha256": "224d50d4e234980ed4aac0300eec82cf024071d865fc7a52b4e74e0df8e4c4c8",
+            "elapsedMs": 551
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/_default/single.html",
+            "file": "site/themes/hugo-simplecss/layouts/_default/single.html",
+            "bytes": 44,
+            "sha256": "303e8c1aae6c125587af894874a94c29e407e7111f3acb348d95d60682d0d824",
+            "elapsedMs": 595
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/index.html",
+            "file": "site/themes/hugo-simplecss/layouts/index.html",
+            "bytes": 44,
+            "sha256": "303e8c1aae6c125587af894874a94c29e407e7111f3acb348d95d60682d0d824",
+            "elapsedMs": 629
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/partials/footer.html",
+            "file": "site/themes/hugo-simplecss/layouts/partials/footer.html",
+            "bytes": 61,
+            "sha256": "6533a63a7a135ba60951430fc25c708e5116eb2ab37de88cf993ee5d682fc2c3",
+            "elapsedMs": 583
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/partials/footer_custom.html",
+            "file": "site/themes/hugo-simplecss/layouts/partials/footer_custom.html",
+            "bytes": 150,
+            "sha256": "ac4820649058bde3ab2917fbd0640f8abbe9a8e22cb25322f28d6fec3ad1e97c",
+            "elapsedMs": 566
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/partials/head.html",
+            "file": "site/themes/hugo-simplecss/layouts/partials/head.html",
+            "bytes": 430,
+            "sha256": "6395aea6760b42771a2feee36cfb36ebe17b4d69f2e9d2b4e77d5f3a641dffaa",
+            "elapsedMs": 618
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/partials/head_custom.html",
+            "file": "site/themes/hugo-simplecss/layouts/partials/head_custom.html",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "elapsedMs": 550
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/layouts/partials/header.html",
+            "file": "site/themes/hugo-simplecss/layouts/partials/header.html",
+            "bytes": 307,
+            "sha256": "773b03bcc7335560f0db517826760c6b251155d97b72103a749664a04f73b60e",
+            "elapsedMs": 784
+          },
+          {
+            "url": "https://raw.githubusercontent.com/splch/hugo-simplecss/3baee7d7cb19bf7b5ae367a6722d93a0371eaa24/theme.toml",
+            "file": "site/themes/hugo-simplecss/theme.toml",
+            "bytes": 657,
+            "sha256": "7e97d6c94bbf084dc5a9247a75dcba1de78c4778c9b0535a67eb7ca99d8aa6c0",
+            "elapsedMs": 635
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/be95124c41bb5e613d72c3a7f8654ae69571a0ea/simple.css",
+            "file": "styles/before/simple.css",
+            "bytes": 9128,
+            "sha256": "198e7f987bc4239234e50c060ef62953cc1611bee429c002725c3755f1cc1155",
+            "elapsedMs": 732
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/be95124c41bb5e613d72c3a7f8654ae69571a0ea/simple.min.css",
+            "file": "styles/before/simple.min.css",
+            "bytes": 6081,
+            "sha256": "0f03a309674cd62af1eecbaf9802cd4c6b7a1a87e842012262e6f5dccd49ed2a",
+            "elapsedMs": 561
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/be95124c41bb5e613d72c3a7f8654ae69571a0ea/LICENSE",
+            "file": "styles/before/LICENSE",
+            "bytes": 1079,
+            "sha256": "1ef4fc06668c7a5158662e118b3c56ab8ef3cadfb69e6056a58c03c094e15290",
+            "elapsedMs": 760
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/92ec2cb69c4f03008b877ee66351615fecbd2e8e/simple.css",
+            "file": "styles/fixed/simple.css",
+            "bytes": 9164,
+            "sha256": "e0b2501beb1573b0a2d00ffcbe672714f87d0f70cf6d09839ba6eeb57a74b9db",
+            "elapsedMs": 678
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/92ec2cb69c4f03008b877ee66351615fecbd2e8e/simple.min.css",
+            "file": "styles/fixed/simple.min.css",
+            "bytes": 6081,
+            "sha256": "0f03a309674cd62af1eecbaf9802cd4c6b7a1a87e842012262e6f5dccd49ed2a",
+            "elapsedMs": 599
+          },
+          {
+            "url": "https://raw.githubusercontent.com/kevquirk/simple.css/92ec2cb69c4f03008b877ee66351615fecbd2e8e/LICENSE",
+            "file": "styles/fixed/LICENSE",
+            "bytes": 1079,
+            "sha256": "1ef4fc06668c7a5158662e118b3c56ab8ef3cadfb69e6056a58c03c094e15290",
+            "elapsedMs": 639
+          },
+          {
+            "url": "https://github.com/gohugoio/hugo/releases/download/v0.96.0/hugo_0.96.0_checksums.txt",
+            "file": "tools/hugo-checksums.txt",
+            "bytes": 2262,
+            "sha256": "3c5894fa1090381411cb36dfe976f25e915867b37eac8d078a954f862aa43272",
+            "elapsedMs": 1686
+          },
+          {
+            "url": "https://github.com/gohugoio/hugo/releases/download/v0.96.0/hugo_0.96.0_Windows-64bit.zip",
+            "file": "tools/hugo_0.96.0_Windows-64bit.zip",
+            "bytes": 16223044,
+            "sha256": "3f609596256f7680ffb6b4e77f91cee7c16202e624b958a17e57086b2677811c",
+            "elapsedMs": 4317
+          }
+        ],
+        "scope": "Complete selected article with its original config/theme and referenced images; unrelated posts/downloads omitted",
+        "licenses": {
+          "articleSource": "site/LICENSE",
+          "theme": "site/themes/hugo-simplecss/LICENSE",
+          "css": "styles/before/LICENSE"
+        }
+      },
+      "browser": "149.0.7827.55",
+      "originalMinified": {
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 559,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "images": [
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/quantumAvalanchePlot.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          }
+        ],
+        "tableStyle": {
+          "display": "table",
+          "overflowX": "visible"
+        }
+      },
+      "sourceBefore": {
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 559,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "images": [
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/quantumAvalanchePlot.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          }
+        ],
+        "tableStyle": {
+          "display": "table",
+          "overflowX": "visible"
+        }
+      },
+      "sourceFixed": {
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 337.5,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 356.25,
+          "viewportWidth": 375,
+          "documentWidth": 375,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [
+            {
+              "tag": "table",
+              "overflowX": "auto"
+            }
+          ],
+          "nodes": 559,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "images": [
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/quantumAvalanchePlot.webp",
+            "complete": true,
+            "width": 800
+          },
+          {
+            "source": "/images/randomCoefficients.webp",
+            "complete": true,
+            "width": 800
+          }
+        ],
+        "tableStyle": {
+          "display": "block",
+          "overflowX": "auto"
+        }
+      },
+      "originalAndSourceWitnessMatch": true,
+      "beforeFailureObserved": true,
+      "fixedControlRejected": true
+    },
+    "product": {
+      "productStatus": "reproduced",
+      "productTotalMs": 1827,
+      "bytes": {
+        "captured": 209133,
+        "reduced": 1760
+      },
+      "reduction": {
+        "checks": 131,
+        "budgetLimited": false,
+        "elapsedMs": 1289,
+        "maxChecks": 500,
+        "maxDurationMs": 30000
+      },
+      "recheck": {
+        "schemaVersion": "breakcase-check/0.1",
+        "status": "reproduced",
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 33,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "browser": "149.0.7827.55",
+        "recordedBrowser": "149.0.7827.55",
+        "sameBytes": true,
+        "otherRequestsBlocked": 0
+      },
+      "sourceBrowserClosed": true,
+      "sourceServicesStopped": true,
+      "sourceFilesUnchanged": true,
+      "sourcePageUnchanged": true,
+      "limits": [
+        "Hugo binary pinned for reconstruction; original workflow used latest",
+        "Known-answer scripted case, no independent agent trial",
+        "Product timing excludes source discovery, download/build and browser startup",
+        "Selected witness, not full page/root-cause equivalence"
+      ]
+    },
+    "baselineAttempt1": {
+      "evidenceClass": "historical-external-css-regression-existing-tool-workflow",
+      "observedAt": "2026-09-21T14:40:24.810Z",
+      "profile": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": true,
+        "hasTouch": true,
+        "colorScheme": "light"
+      },
+      "selector": "table",
+      "tools": {
+        "singleFile": "2.15.2",
+        "lithium": "8b567a5f7572240fc15d25ad0df173f2008010a3",
+        "browser": "149.0.7827.55"
+      },
+      "before": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 559,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "capturedObservation": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 563,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "formattedObservation": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 563,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "after": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 36,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "capturedBytes": 166268,
+      "formattedBytes": 166916,
+      "reducedBytes": 42426,
+      "reducedSha256": "57987743edfd50513239f353b66d5b7d8c0744d9c2e78c512c31f7f3f7ea2c1e",
+      "captureMsIncludingStartupAndWait": 8697,
+      "reductionMs": 3064,
+      "oracleChecks": 85,
+      "oracleRequests": 85,
+      "budgetLimited": false,
+      "usedBestAcceptedFallback": false,
+      "sourceServiceStoppedBeforeReduction": true,
+      "freshOfflineReopen": true,
+      "otherRequestsBlocked": 0,
+      "fixedControlRejected": true,
+      "limits": [
+        "Shared source restoration and browser witness",
+        "Formatting helper and condition bridge are part of the baseline",
+        "500 browser-oracle checks / 30-second reduction cap; over-budget requests rejected without browser evaluation",
+        "Known-answer scripted comparison, not autonomous agent choice or complete reasoning-cost measurement"
+      ]
+    },
+    "baselineAttempt2": {
+      "accepted": false,
+      "reason": "Lost selected witness after fresh offline reopening; inherited mobile viewport in setContent oracle",
+      "diagnosis": {
+        "before": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 559,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "setContent": {
+          "observation": {
+            "targetCount": 1,
+            "visible": true,
+            "left": 130,
+            "width": 720,
+            "height": 234.65625,
+            "textWidth": 719,
+            "targetScrollWidth": 720,
+            "effectiveRight": 850,
+            "viewportWidth": 980,
+            "documentWidth": 981,
+            "scrollX": 0,
+            "scrollY": 0,
+            "clipping": [],
+            "nodes": 26,
+            "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+          },
+          "document": {
+            "encoding": "UTF-8",
+            "mode": "CSS1Compat",
+            "styles": [
+              4
+            ]
+          }
+        },
+        "file": {
+          "observation": {
+            "targetCount": 1,
+            "visible": true,
+            "left": 130,
+            "width": 720,
+            "height": 234.65625,
+            "textWidth": 719,
+            "targetScrollWidth": 720,
+            "effectiveRight": 850,
+            "viewportWidth": 980,
+            "documentWidth": 981,
+            "scrollX": 0,
+            "scrollY": 0,
+            "clipping": [],
+            "nodes": 26,
+            "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+          },
+          "document": {
+            "encoding": "windows-1252",
+            "mode": "CSS1Compat",
+            "styles": [
+              4
+            ]
+          }
+        }
+      }
+    },
+    "baselineAttempt3": {
+      "evidenceClass": "historical-external-css-regression-existing-tool-workflow",
+      "observedAt": "2026-09-21T14:52:07.399Z",
+      "profile": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": true,
+        "hasTouch": true,
+        "colorScheme": "light"
+      },
+      "selector": "table",
+      "tools": {
+        "singleFile": "2.15.2",
+        "lithium": "8b567a5f7572240fc15d25ad0df173f2008010a3",
+        "browser": "149.0.7827.55"
+      },
+      "before": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 559,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "capturedObservation": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 563,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "formattedObservation": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 563,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "after": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 18.75,
+        "width": 460.046875,
+        "height": 289.875,
+        "textWidth": 459.046875,
+        "targetScrollWidth": 460,
+        "effectiveRight": 478.796875,
+        "viewportWidth": 375,
+        "documentWidth": 479,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 27,
+        "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+      },
+      "capturedBytes": 166268,
+      "formattedBytes": 166941,
+      "reducedBytes": 892,
+      "reducedSha256": "5af5f2abda0aa457e17a05fe390011fbd7a37f83ac06cb758dce5235ddfafb49",
+      "captureMsIncludingStartupAndWait": 9704,
+      "formattingAndValidationMs": 53,
+      "reductionMs": 16964,
+      "phases": [
+        {
+          "strategy": "lines",
+          "exit": 0,
+          "elapsedMs": 4212,
+          "checks": 91,
+          "bestBytes": 1632,
+          "budgetLimited": false
+        },
+        {
+          "strategy": "char",
+          "exit": null,
+          "elapsedMs": 12749,
+          "checks": 409,
+          "bestBytes": 892,
+          "budgetLimited": true
+        }
+      ],
+      "oracleChecks": 500,
+      "oracleRequests": 502,
+      "budgetLimited": true,
+      "usedBestAcceptedFallback": false,
+      "sourceServiceStoppedBeforeReduction": true,
+      "freshOfflineReopen": true,
+      "otherRequestsBlocked": 0,
+      "fixedControlRejected": true,
+      "limits": [
+        "Shared source restoration and browser witness",
+        "Formatting helper and condition bridge are part of the baseline",
+        "500 browser-oracle checks / 30-second reduction cap shared by lines and char phases; stop at cap and retain best",
+        "Attempt 3 corrects inherited viewport state in the baseline oracle with local file navigation; all attempts retained",
+        "Known-answer scripted comparison, not autonomous agent choice or complete reasoning-cost measurement"
+      ]
+    }
+  },
+  "negativeMvp": {
+    "admission": {
+      "evidenceClass": "historical-complete-public-static-site",
+      "observedAt": "2026-09-21T14:55:49.388Z",
+      "manifest": {
+        "case": "B-P02-mvp-3",
+        "report": "https://github.com/andybrewer/mvp/pull/3",
+        "before": "75db7b6563c323c0506bf3be4e2a3a35205e9e1f",
+        "fixed": "3dbc7742bd224c94d74aa33a54145bc79679435a",
+        "selector": "table",
+        "profile": {
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": true,
+          "hasTouch": true,
+          "colorScheme": "light"
+        },
+        "scope": "Complete unchanged before repository homepage and assets; CSS-only fixed control",
+        "protocolSha256": "5703c507c428596ca0603c9cc9681b0e827f3c86eff3dc2bf35d66ec01545816",
+        "resources": [
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/LICENSE",
+            "file": "public/LICENSE",
+            "bytes": 1067,
+            "sha256": "c042c984c09532cbeeb13d7c925289a8d66b7351420f7f76745c39fa18bd748a",
+            "elapsedMs": 631
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/README.md",
+            "file": "public/README.md",
+            "bytes": 186,
+            "sha256": "62a1c7e7798716b7049587ace73cc6ef4e045bb848fb70fc622ea5d43e9db31d",
+            "elapsedMs": 630
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/brand.png",
+            "file": "public/img/brand.png",
+            "bytes": 82705,
+            "sha256": "a7b0f745b14fe56c256d0f90545595afb88fea1ca11f1cde3cdcd8eb01db2cf8",
+            "elapsedMs": 783
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/defaults.svg",
+            "file": "public/img/defaults.svg",
+            "bytes": 21813,
+            "sha256": "f9e511078fa1b5609fe6d164ff6f2c50e6f41cf9290b7cefd4e984b14c70149c",
+            "elapsedMs": 580
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/html.svg",
+            "file": "public/img/html.svg",
+            "bytes": 16625,
+            "sha256": "923a168e4b73cf20eb76d2d19bbb1e7734dad5ddc5a709cbed919fccbe450061",
+            "elapsedMs": 533
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/icon-quote.svg",
+            "file": "public/img/icon-quote.svg",
+            "bytes": 586,
+            "sha256": "1dd9a57a73de30a759e4f91c9df6b151894095b55e314cefb426c084c248d94a",
+            "elapsedMs": 580
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/idea.svg",
+            "file": "public/img/idea.svg",
+            "bytes": 23658,
+            "sha256": "b6f0eeb9e81dfe12a12ee901ea30fcf502dd8e512d370cd17ae044e1686fc491",
+            "elapsedMs": 584
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/license.svg",
+            "file": "public/img/license.svg",
+            "bytes": 24423,
+            "sha256": "c29d9f61ac36cf18275d67538abcef5586a4994be104f5159d4f1f86f62ec4f7",
+            "elapsedMs": 567
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/logo.png",
+            "file": "public/img/logo.png",
+            "bytes": 50769,
+            "sha256": "5828c464b901f7429929e4f56c109818cf3505f7cbf16824356ae61438a711dd",
+            "elapsedMs": 941
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/mobile.svg",
+            "file": "public/img/mobile.svg",
+            "bytes": 7863,
+            "sha256": "3903eb18068df7ff409d66852f33a390cce1c6551df9659eb566b0f3f479ef1f",
+            "elapsedMs": 543
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/stock.jpeg",
+            "file": "public/img/stock.jpeg",
+            "bytes": 151836,
+            "sha256": "5c4e6471dd28a9eab43eaffc9d576f1db98f36c9e3dca3b6cad558aa93e49641",
+            "elapsedMs": 637
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/img/stock.jpg",
+            "file": "public/img/stock.jpg",
+            "bytes": 236964,
+            "sha256": "9e7d86f970d8612406870e7a2d01139ae4df61d07b41e8bac267525cb047fc02",
+            "elapsedMs": 639
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/index.html",
+            "file": "public/index.html",
+            "bytes": 18769,
+            "sha256": "6f97aaa62e91cf59b4030f51cd5778b57ede615410d72b4621ca63ba6f840e93",
+            "elapsedMs": 551
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/mvp.css",
+            "file": "public/mvp.css",
+            "bytes": 6053,
+            "sha256": "a0daa9c78d9850416588ca49bf8558270acb847d1c53e8a9ea9e62a68e35f5b0",
+            "elapsedMs": 655
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/75db7b6563c323c0506bf3be4e2a3a35205e9e1f/quickstart.html.txt",
+            "file": "public/quickstart.html.txt",
+            "bytes": 3895,
+            "sha256": "416e4674ee8e2f98a37e4f41f05e4a7632c09ebb8575b0969241d32ce41802ce",
+            "elapsedMs": 573
+          },
+          {
+            "url": "https://raw.githubusercontent.com/andybrewer/mvp/3dbc7742bd224c94d74aa33a54145bc79679435a/mvp.css",
+            "file": "fixed/mvp.css",
+            "bytes": 6100,
+            "sha256": "32fe7f8d87378012f9095fe3bbb014187455c2675af614106f268bbbd54ecb46",
+            "elapsedMs": 547
+          }
+        ]
+      },
+      "browser": "149.0.7827.55",
+      "sourceBefore": {
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": -0.203125,
+          "width": 320.421875,
+          "height": 499.46875,
+          "textWidth": 318.421875,
+          "targetScrollWidth": 318,
+          "effectiveRight": 320,
+          "viewportWidth": 320,
+          "documentWidth": 328,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [
+            {
+              "tag": "body",
+              "overflowX": "hidden"
+            }
+          ],
+          "nodes": 407,
+          "textSha256": "8e7091cc637400dd3e04c536551bc0bec0596e9b90c2cc6a2d391994ac1f6c78"
+        },
+        "images": [
+          {
+            "source": "/img/logo.png",
+            "complete": true,
+            "width": 796
+          },
+          {
+            "source": "/img/html.svg",
+            "complete": true,
+            "width": 198
+          },
+          {
+            "source": "/img/mobile.svg",
+            "complete": true,
+            "width": 143
+          },
+          {
+            "source": "/img/license.svg",
+            "complete": true,
+            "width": 164
+          },
+          {
+            "source": "/img/icon-quote.svg",
+            "complete": true,
+            "width": 300
+          },
+          {
+            "source": "/img/brand.png",
+            "complete": true,
+            "width": 763
+          },
+          {
+            "source": "/img/stock.jpg",
+            "complete": true,
+            "width": 3375
+          },
+          {
+            "source": "/img/idea.svg",
+            "complete": true,
+            "width": 176
+          },
+          {
+            "source": "/img/brand.png",
+            "complete": true,
+            "width": 763
+          }
+        ],
+        "tableStyle": {
+          "display": "table",
+          "overflowX": "hidden",
+          "scrollWidth": 318,
+          "clientWidth": 320,
+          "rectLeft": -0.203125,
+          "rectRight": 320.21875,
+          "bodyOverflowX": "hidden"
+        }
+      },
+      "sourceFixed": {
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 288,
+          "height": 499.46875,
+          "textWidth": 318.421875,
+          "targetScrollWidth": 318,
+          "effectiveRight": 304,
+          "viewportWidth": 320,
+          "documentWidth": 328,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [
+            {
+              "tag": "table",
+              "overflowX": "scroll"
+            }
+          ],
+          "nodes": 407,
+          "textSha256": "8e7091cc637400dd3e04c536551bc0bec0596e9b90c2cc6a2d391994ac1f6c78"
+        },
+        "images": [
+          {
+            "source": "/img/logo.png",
+            "complete": true,
+            "width": 796
+          },
+          {
+            "source": "/img/html.svg",
+            "complete": true,
+            "width": 198
+          },
+          {
+            "source": "/img/mobile.svg",
+            "complete": true,
+            "width": 143
+          },
+          {
+            "source": "/img/license.svg",
+            "complete": true,
+            "width": 164
+          },
+          {
+            "source": "/img/icon-quote.svg",
+            "complete": true,
+            "width": 300
+          },
+          {
+            "source": "/img/brand.png",
+            "complete": true,
+            "width": 763
+          },
+          {
+            "source": "/img/stock.jpg",
+            "complete": true,
+            "width": 3375
+          },
+          {
+            "source": "/img/idea.svg",
+            "complete": true,
+            "width": 176
+          },
+          {
+            "source": "/img/brand.png",
+            "complete": true,
+            "width": 763
+          }
+        ],
+        "tableStyle": {
+          "display": "block",
+          "overflowX": "scroll",
+          "scrollWidth": 318,
+          "clientWidth": 286,
+          "rectLeft": 16,
+          "rectRight": 304,
+          "bodyOverflowX": "hidden"
+        }
+      },
+      "beforeFailureObserved": false,
+      "fixedControlRejected": true,
+      "positiveCaseAdmitted": false
+    },
+    "productStatus": "no-overflow",
+    "productMessage": "The selected element does not show the supported right-side document overflow.",
+    "sourceFilesUnchanged": true,
+    "sourcePageUnchanged": true
+  },
+  "negativeBulma": {
+    "evidenceClass": "public-reported-layout-known-case-exploratory-workflow",
+    "source": {
+      "issue": "https://github.com/jgthms/bulma/issues/3854",
+      "title": "grid cells sometimes overlap, sometimes overflow on the right hand side of the screen",
+      "sourceRevision": "43b879db25d86d630e3e5c6282421b696b31ce33",
+      "reportedVersion": "1.0.1",
+      "viewport": {
+        "width": 500,
+        "height": 900
+      },
+      "selector": ".grid .cell:nth-child(2) .button",
+      "container": ".grid .cell:nth-child(2)",
+      "protocolSha256": "c776e64c54cd69eeeaddd7581879e2f8c9e9f67baf6157cd4cc862038c51ed0c",
+      "preparation": "Original issue HTML retained; only the stylesheet URL is mirrored in source.html",
+      "sourceHashes": {
+        "bulma.min.css": "04ec61b97991b54778c14c7842fb26e287d2c247790b4596dee8b6b89447cd3e",
+        "BULMA_LICENSE": "fbe7d8ec18b72eded15d79ca73da5eef9e8e258f5f1aff83e4e993e69752279c",
+        "original.html": "59fa3261284923275658f651ddd21a3a6cb8d71d4145bb614524ce16cc124c61",
+        "source.html": "c26a1b1636f6f6e36d197e36a011fd3bf2e80f172ca98f6ee7b84b83cb8c4d4d"
+      },
+      "classification": "negative-candidate-not-a-confirmed-upstream-defect-fix-pair"
+    },
+    "browser": "149.0.7827.55",
+    "profile": {
+      "viewport": {
+        "width": 500,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false
+    },
+    "before": {
+      "documentMode": "BackCompat",
+      "viewportWidth": 500,
+      "documentWidth": 500,
+      "rootOverflowX": "hidden",
+      "target": {
+        "left": 174.65625,
+        "width": 199.21875,
+        "right": 373.875,
+        "height": 40
+      },
+      "container": {
+        "left": 174.65625,
+        "width": 150.671875,
+        "right": 325.328125
+      },
+      "textRight": 357.875,
+      "rightBleed": 48.546875,
+      "style": {
+        "whiteSpace": "nowrap",
+        "gridTemplateColumns": "150.656px 150.672px 150.672px"
+      }
+    },
+    "productStatus": "no-overflow",
+    "productMessage": "The selected element does not show the supported right-side document overflow.",
+    "productWitness": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 174.65625,
+      "width": 199.21875,
+      "height": 40,
+      "textWidth": 167.21875,
+      "targetScrollWidth": 199,
+      "effectiveRight": 373.875,
+      "viewportWidth": 500,
+      "documentWidth": 500,
+      "scrollX": 0,
+      "scrollY": 0,
+      "clipping": [],
+      "nodes": 37,
+      "textSha256": "b48733f291951252159a868935a0029bf0bab4d5c8eb894fb74cb979736250e5"
+    },
+    "applicationControl": {
+      "documentMode": "BackCompat",
+      "viewportWidth": 500,
+      "documentWidth": 500,
+      "rootOverflowX": "hidden",
+      "target": {
+        "left": 174.65625,
+        "width": 150.671875,
+        "right": 325.328125,
+        "height": 64
+      },
+      "container": {
+        "left": 174.65625,
+        "width": 150.671875,
+        "right": 325.328125
+      },
+      "textRight": 309.328125,
+      "rightBleed": 0,
+      "style": {
+        "whiteSpace": "normal",
+        "gridTemplateColumns": "150.656px 150.672px 150.672px"
+      }
+    },
+    "sourceBytesUnchanged": true,
+    "sourcePageUnchanged": true,
+    "limits": [
+      "No upstream fixed revision; style control is an authored application proposal",
+      "Mirrored pinned CSS, not original-CDN capture",
+      "Selected parent bleed only, not complete UI repair",
+      "No agent-selection, full task time or token-benefit measurement"
+    ]
+  },
+  "limits": [
+    "Full research workspace and third-party content not redistributed",
+    "One accepted positive; two skip negatives",
+    "Two further positive cases remain required",
+    "No independent use or complete task benefit measurement"
+  ]
+}

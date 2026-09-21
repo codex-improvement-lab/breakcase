@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Document a public historical article handoff and two skip-reduction cases,
+  including the smaller competent baseline and retained unsuccessful attempts.
+  Documentation only; the 0.1.0-alpha.1 runtime and release assets are unchanged.
+
 ## 0.1.0-alpha.1
 
 - Original static capture and structural DOM/CSS reduction for a selected

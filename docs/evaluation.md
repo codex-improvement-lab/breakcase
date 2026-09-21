@@ -38,7 +38,11 @@ The first hosted run passed its browser tests on macOS but its clean-install
 harness rejected a resolved module path before exercising the installed CLI.
 The containment check now compares canonical filesystem paths, accounting for
 macOS temporary-directory aliases. This was a smoke-harness failure, not evidence
-of a product bug or a complete macOS package pass. The rerun determines that result.
+of a product bug or a complete macOS package pass. The subsequent
+[release run](https://github.com/codex-improvement-lab/breakcase/actions/runs/35541101598)
+passed all six Windows/Linux/macOS × Node 22/24 jobs at
+`6763e7af16573a0868487cf95553d36728739081`. This hosted result is not a physical
+Mac integration acceptance.
 
 Local first run: 6 browser test groups passed on Windows with Node 24.19.0 and
 Chromium 149.0.7827.55. Hosted CI and publication status are recorded in the release
@@ -46,6 +50,11 @@ notes when actually observed. Passing automated checks does not establish physic
 device validation or external adoption.
 
 ## What remains unknown
+
+The subsequent [public historical cases](historical-cases.md) add one accepted
+complete-article handoff and two skip-reduction negatives. The competent
+SingleFile/Lithium baseline is smaller on that accepted case too. They do not
+resolve the independent-use or whole-task-cost questions below.
 
 - Independent agent choice and repeat use.
 - Setup plus capture plus reasoning cost versus a reusable SingleFile/Lithium helper.

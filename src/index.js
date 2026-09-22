@@ -7,7 +7,7 @@ import { reduceStructure } from "./reduce.js";
 import { hasOverflow, matches, normalizeProfile, observe, sha256 } from "./witness.js";
 import { renderReport } from "./report.js";
 
-const version = "0.1.0-alpha.1";
+export const version = "0.1.0-alpha.2";
 export { hasOverflow, matches, observe } from "./witness.js";
 
 async function loadHtml(page, html) {
@@ -46,7 +46,8 @@ export async function reduceOverflow({ page, selector, outputDir, profile, maxCh
   await mkdir(out); // Existing output is never overwritten.
   const result = { schemaVersion: "breakcase/0.1", version, status: "error", selector, profile,
     browser: browser.version(), createdAt: new Date().toISOString(),
-    witness: "right-side visible document overflow; same target text and horizontal/box/text dimensions within 1 CSS pixel",
+    witnessVersion: 2,
+    witness: "right-side document overflow; same target text, box/text dimensions and visual viewport within 1 CSS pixel; same visual scale within 0.001",
     coordinates: "document-space; scroll position is recorded separately", warnings: [] };
   let working, reopened;
   async function finish(status, message) {
@@ -63,6 +64,8 @@ export async function reduceOverflow({ page, selector, outputDir, profile, maxCh
     await page.waitForTimeout(100);
     if (!matches(result.before, await observe(page, selector))) return await finish("unstable-source", "The selected layout changed between observations. Capture a settled state.");
     const captured = await capturePage(page);
+    result.capture = { stylesheets: captured.stylesheets, images: captured.images,
+      embeddedResourceCount: captured.embeddedResourceCount, corsFetchedStylesheets: captured.corsFetchedStylesheets };
     result.warnings = captured.warnings;
     if (captured.warnings.length) return await finish("capture-incomplete", "The page contains unsupported or unreadable capture content. No reproduction is claimed.");
     if (Buffer.byteLength(captured.html) > 10_000_000) return await finish("capture-incomplete", "Static capture exceeds the preview's 10 MB limit.");
@@ -105,6 +108,9 @@ export async function checkReproduction({ file, resultFile }) {
   if (recorded.schemaVersion !== "breakcase/0.1" || recorded.status !== "reproduced" || typeof recorded.selector !== "string") {
     throw new Error("Expected a successful breakcase/0.1 result.json");
   }
+  if (![undefined, 1, 2].includes(recorded.witnessVersion)) throw new Error("Unsupported witness version");
+  const visualViewportCompared = Number.isFinite(recorded.before?.visualViewportWidth) && Number.isFinite(recorded.before?.visualViewportScale);
+  if (recorded.witnessVersion === 2 && !visualViewportCompared) throw new Error("Witness version 2 requires visual viewport width and scale");
   const profile = normalizeProfile(recorded.profile);
   const bytes = await readFile(file), fileUrl = pathToFileURL(path.resolve(file)).href;
   const browser = await chromium.launch({ headless: true });
@@ -113,8 +119,9 @@ export async function checkReproduction({ file, resultFile }) {
     const page = await context.newPage(); await page.goto(fileUrl, { timeout: 5000 });
     const observation = await observe(page, recorded.selector);
     const reproduced = matches(recorded.before, observation) && blocked.length === 0;
-    return { schemaVersion: "breakcase-check/0.1", status: reproduced ? "reproduced" : "not-reproduced",
+    return { schemaVersion: "breakcase-check/0.1", version, status: reproduced ? "reproduced" : "not-reproduced",
       observation, browser: browser.version(), recordedBrowser: recorded.browser,
+      recordedVersion: recorded.version, witnessVersion: recorded.witnessVersion ?? 1, visualViewportCompared,
       sameBytes: sha256(bytes) === recorded.sha256.reduced, otherRequestsBlocked: blocked.length };
   } finally { await browser.close(); }
 }

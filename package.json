@@ -1,6 +1,6 @@
 {
   "name": "@codex-improvement-lab/breakcase",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Turn a selected layout overflow into a small, independently runnable HTML/CSS reproduction.",
   "type": "module",
   "license": "MIT",
@@ -9,7 +9,7 @@
   "packageManager": "pnpm@11.19.0",
   "bin": { "breakcase": "./src/cli.js" },
   "exports": { ".": "./src/index.js" },
-  "files": ["src", "examples", "docs/demo.png", "docs/evaluation.md", "README.md", "LICENSE", "CHANGELOG.md"],
+  "files": ["src", "examples", "docs", "README.md", "LICENSE", "CHANGELOG.md"],
   "scripts": { "test": "node --test --test-concurrency=1", "demo": "node src/cli.js demo --out .breakcase/demo", "smoke": "node scripts/package-smoke.mjs" },
   "dependencies": { "playwright": "1.61.1" },
   "repository": { "type": "git", "url": "git+https://github.com/codex-improvement-lab/breakcase.git" },

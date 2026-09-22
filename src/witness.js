@@ -26,6 +26,8 @@ export async function observe(page, selector) {
       visible, left: rect.left + scrollX, width: rect.width, height: rect.height,
       textWidth: text.width, targetScrollWidth: target.scrollWidth,
       effectiveRight: right + scrollX, viewportWidth: document.documentElement.clientWidth,
+      visualViewportWidth: window.visualViewport?.width ?? document.documentElement.clientWidth,
+      visualViewportScale: window.visualViewport?.scale ?? 1,
       documentWidth: document.documentElement.scrollWidth, scrollX, scrollY, clipping,
       nodes: document.querySelectorAll("*").length };
   }, selector);
@@ -44,6 +46,11 @@ export function hasOverflow(value) {
 
 export function matches(before, after) {
   if (!hasOverflow(after) || after.textSha256 !== before.textSha256 || after.viewportWidth !== before.viewportWidth) return false;
+  if (Number.isFinite(before.visualViewportWidth) && Number.isFinite(before.visualViewportScale)) {
+    if (!Number.isFinite(after.visualViewportWidth) || !Number.isFinite(after.visualViewportScale)
+      || Math.abs(before.visualViewportWidth - after.visualViewportWidth) > 1
+      || Math.abs(before.visualViewportScale - after.visualViewportScale) > 0.001) return false;
+  }
   return ["left", "width", "height", "textWidth", "targetScrollWidth", "effectiveRight"]
     .every(key => Number.isFinite(before[key]) && Number.isFinite(after[key]) && Math.abs(before[key] - after[key]) <= 1);
 }

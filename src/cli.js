@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
 import { chromium } from "playwright";
-import { checkReproduction, reduceOverflow } from "./index.js";
+import { checkReproduction, reduceOverflow, version } from "./index.js";
 
 const help = `Breakcase — the bug fits in a file.
 
@@ -38,7 +38,7 @@ try {
   } });
   json = values.json;
   const command = positionals[0];
-  if (values.version) process.stdout.write("0.1.0-alpha.1\n");
+  if (values.version) process.stdout.write(`${version}\n`);
   else if (values.help || !command || command === "help") process.stdout.write(help);
   else if (command === "install-browser") {
     if (positionals.length !== 1) throw new Error("install-browser accepts no positional arguments");
@@ -72,13 +72,16 @@ try {
         maxChecks: Number(values["max-checks"]), maxDurationMs: Number(values["max-ms"]) });
     } else throw new Error(`Unknown command: ${command}`);
     const output = values.out ? path.resolve(values.out) : undefined;
-    const summary = { status: result.status, message: result.message, output,
+    const summary = { status: result.status, version, message: result.message, output,
+      recordedVersion: result.recordedVersion, witnessVersion: result.witnessVersion,
+      visualViewportCompared: result.visualViewportCompared, capture: result.capture,
       bytes: result.bytes, reduction: result.reduction, sameBytes: result.sameBytes,
       otherRequestsBlocked: result.otherRequestsBlocked,
       report: output ? path.join(output, "report.html") : undefined,
       result: output ? path.join(output, "result.json") : undefined };
     if (json) process.stdout.write(JSON.stringify(summary) + "\n");
-    else process.stdout.write(`${result.status}: ${result.message ?? "Saved witness checked."}\n${output ? `Report: ${path.join(output, "report.html")}\n` : ""}`);
+    else process.stdout.write(`${result.status}: ${result.message ?? (result.visualViewportCompared === false
+      ? "Saved legacy witness checked; visual viewport was not recorded." : "Saved witness checked.")}\n${output ? `Report: ${path.join(output, "report.html")}\n` : ""}`);
     process.exitCode = result.status === "reproduced" ? 0 : ["no-overflow", "not-reproduced"].includes(result.status) ? 1 : 2;
   }
 } catch (error) {

@@ -23,7 +23,7 @@ Node.js 22+ is required. The package is distributed as a GitHub release tarball;
 it is not published to the npm registry.
 
 ```sh
-npm install --save-dev https://github.com/codex-improvement-lab/breakcase/releases/download/v0.1.0-alpha.1/codex-improvement-lab-breakcase-0.1.0-alpha.1.tgz
+npm install --save-dev https://github.com/codex-improvement-lab/breakcase/releases/download/v0.1.0-alpha.2/codex-improvement-lab-breakcase-0.1.0-alpha.2.tgz
 npx breakcase install-browser
 npx breakcase demo --out ./demo-case
 ```
@@ -117,8 +117,14 @@ does not make a clipped target interesting.
 
 Every accepted deletion must retain the target text digest, viewport width and
 its document X, width, height, text width, scroll width and visible right extent
-within one CSS pixel. Scroll position is separate from document geometry. The
+within one CSS pixel. It also retains visual viewport width within one CSS pixel
+and visual scale within 0.001, so removing mobile viewport metadata cannot pass by
+zooming the result out. Scroll position is separate from document geometry. The
 final file is opened in a fresh context and checked again.
+
+New results use `witnessVersion: 2`. Old results remain checkable under their
+recorded contract; `check` reports `visualViewportCompared: false` when the old
+record lacks these fields. A legacy check is not a visual-viewport validation.
 
 This preserves a specific observation, not all styling, application interactions,
 accessibility behavior or the original root cause. Fonts, browser versions and
@@ -144,9 +150,15 @@ best accepted case and records `budgetLimited: true`; it may have no byte reduct
 whether the failure still exists.
 
 The preview conservatively reports incomplete captures for frames, open shadow
-roots, canvas/media, adopted stylesheets, unreadable cross-origin stylesheets,
+roots, canvas/media, adopted stylesheets, unreadable stylesheets,
 CSS imports and resources it cannot embed. Dynamic application behavior and
 hover/focus state are not replayed. A settled static layout is the supported job.
+
+When a linked stylesheet hides its CSSOM but permits normal CORS reads, capture
+can fetch its UTF-8 CSS through the source page. This obeys the page's CSP/CORS
+rules, omits cross-origin credentials, follows redirects for relative asset URLs,
+and limits each stylesheet to 5 MB / 5 seconds. Denied or unsupported content
+still returns `capture-incomplete`. JSON records `capture.corsFetchedStylesheets`.
 
 ## Why another tool?
 
@@ -163,6 +175,8 @@ Whether this convenience improves complete tasks remains a trial question.
 See the [historical public cases](docs/historical-cases.md): an offline table
 handoff, a smaller SingleFile/Lithium result, and two cases where reduction should
 be skipped. These are local reconstructions, not independent adoption evidence.
+The [Bootstrap follow-up](docs/bootstrap-cases.md) records two more inputs, the
+CORS capture change and the visual-viewport correction in alpha.2.
 
 ## Development and feedback
 

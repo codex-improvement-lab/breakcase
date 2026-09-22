@@ -1,0 +1,877 @@
+{
+  "evidenceClass": "historical-source-reconstruction-scripted-comparison",
+  "date": "2026-09-22",
+  "witnessVersion": 2,
+  "cases": [
+    {
+      "id": "B-P03",
+      "page": "pagination",
+      "selector": ".bd-example .pagination-lg",
+      "profile": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": true,
+        "hasTouch": true,
+        "colorScheme": "light"
+      },
+      "provenance": {
+        "archiveRevision": "ed05e78a9b9a02d47d8e614a2761561028c63aca",
+        "report": "https://github.com/twbs/bootstrap/issues/24877",
+        "fixCommit": "05d88ca285100e57220bdb7079a3bcbd13da87d3",
+        "control": "compiled archive rule with upstream overflow:auto addition",
+        "sourceHtmlSha256": "17bd7de7a23479014c30fb365c93a344aabea0be44153056c3b35d2daac9b2ca",
+        "beforeDocsCssSha256": "2c2ccc87a7afebd08dfa17b4519fa64d4ca6c138891e44cbf5105395bbef0729",
+        "fixedDocsCssSha256": "60697035da7d4ef6a1aa0307f26c8439df5a5f44cafb58bc01b1ba7d9a578b0f",
+        "docsearchSha256": "40e49153fadaf4072dc9790805b888075e3868305db6f5c170d73739336e5ff4",
+        "protocolSha256": "0f7a83b95ac594bc8bbe38c958d90747f69618151017321e371e29e32d0a4920"
+      },
+      "before": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 16,
+        "width": 343,
+        "height": 56,
+        "textWidth": 394.296875,
+        "targetScrollWidth": 394,
+        "effectiveRight": 410.296875,
+        "viewportWidth": 375,
+        "visualViewportWidth": 375,
+        "visualViewportScale": 1,
+        "documentWidth": 410,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 1015,
+        "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+      },
+      "fixed": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 16,
+        "width": 343,
+        "height": 56,
+        "textWidth": 394.296875,
+        "targetScrollWidth": 394,
+        "effectiveRight": 375,
+        "viewportWidth": 375,
+        "visualViewportWidth": 375,
+        "visualViewportScale": 1,
+        "documentWidth": 375,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [
+          {
+            "tag": "div",
+            "overflowX": "auto"
+          }
+        ],
+        "nodes": 1015,
+        "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+      },
+      "product": {
+        "schemaVersion": "breakcase/0.1",
+        "version": "0.1.0-alpha.2",
+        "status": "reproduced",
+        "selector": ".bd-example .pagination-lg",
+        "profile": {
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": true,
+          "hasTouch": true,
+          "colorScheme": "light"
+        },
+        "browser": "149.0.7827.55",
+        "createdAt": "2026-09-22T06:10:12.281Z",
+        "witnessVersion": 2,
+        "witness": "right-side document overflow; same target text, box/text dimensions and visual viewport within 1 CSS pixel; same visual scale within 0.001",
+        "coordinates": "document-space; scroll position is recorded separately",
+        "warnings": [],
+        "before": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 394.296875,
+          "targetScrollWidth": 394,
+          "effectiveRight": 410.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 410,
+          "scrollX": 0,
+          "scrollY": 3368,
+          "clipping": [],
+          "nodes": 1015,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "capture": {
+          "stylesheets": 4,
+          "images": 0,
+          "embeddedResourceCount": 0,
+          "corsFetchedStylesheets": 1
+        },
+        "captured": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 394.296875,
+          "targetScrollWidth": 394,
+          "effectiveRight": 410.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 410,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 1003,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "reduction": {
+          "checks": 248,
+          "budgetLimited": false,
+          "elapsedMs": 6857,
+          "maxChecks": 500,
+          "maxDurationMs": 30000
+        },
+        "after": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 393.296875,
+          "targetScrollWidth": 393,
+          "effectiveRight": 409.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 409,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 53,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "offline": {
+          "freshContext": true,
+          "scriptsDisabled": true,
+          "otherRequestsBlocked": 0
+        },
+        "bytes": {
+          "captured": 234181,
+          "reduced": 5005
+        },
+        "sha256": {
+          "captured": "b254447c3660d1726cdda3529bef50ee1dace7ed560e166a86ee60d77a71c771",
+          "reduced": "c60b3a7d60cd2eb44142aeb3ddf9d525e9bf673b3ff6d813064bf0f6c4ba34ed"
+        },
+        "message": "The smaller static file preserves the selected overflow in a fresh offline browser context."
+      },
+      "offlineRecheck": {
+        "schemaVersion": "breakcase-check/0.1",
+        "status": "reproduced",
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 393.296875,
+          "targetScrollWidth": 393,
+          "effectiveRight": 409.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 409,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 53,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "browser": "149.0.7827.55",
+        "recordedBrowser": "149.0.7827.55",
+        "witnessVersion": 2,
+        "visualViewportCompared": true,
+        "sameBytes": true,
+        "otherRequestsBlocked": 0
+      },
+      "productOperationMs": 7556,
+      "sourcePageUnchanged": true,
+      "baseline": {
+        "tools": {
+          "singleFile": "2.15.2",
+          "lithium": "8b567a5f7572240fc15d25ad0df173f2008010a3",
+          "browser": "149.0.7827.55"
+        },
+        "before": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 394.296875,
+          "targetScrollWidth": 394,
+          "effectiveRight": 410.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 410,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 1015,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "after": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 343,
+          "height": 56,
+          "textWidth": 393.296875,
+          "targetScrollWidth": 393,
+          "effectiveRight": 409.296875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 409,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 18,
+          "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+        },
+        "capturedBytes": 48009,
+        "reducedBytes": 1081,
+        "reducedSha256": "f84e5cfa6007abe8bd67129a49607a6f2758b8f5ecff2895c9d225894327c192",
+        "captureMsIncludingStartupAndWait": 11155,
+        "formattingAndValidationMs": 45,
+        "reductionMs": 16474,
+        "phases": [
+          {
+            "strategy": "lines",
+            "exit": 0,
+            "elapsedMs": 8162,
+            "checks": 222,
+            "bestBytes": 1657,
+            "budgetLimited": false
+          },
+          {
+            "strategy": "char",
+            "exit": null,
+            "elapsedMs": 8309,
+            "checks": 278,
+            "bestBytes": 1081,
+            "budgetLimited": true
+          }
+        ],
+        "oracleChecks": 500,
+        "budgetLimited": true,
+        "freshOfflineReopen": true,
+        "fixedControlRejected": true
+      }
+    },
+    {
+      "id": "B-P05",
+      "page": "buttons",
+      "selector": ".bd-example > .btn-group[data-toggle=\"buttons\"]:has(input[type=\"checkbox\"])",
+      "profile": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": true,
+        "hasTouch": true,
+        "colorScheme": "light"
+      },
+      "provenance": {
+        "archiveRevision": "ed05e78a9b9a02d47d8e614a2761561028c63aca",
+        "report": "https://github.com/twbs/bootstrap/issues/24877",
+        "fixCommit": "05d88ca285100e57220bdb7079a3bcbd13da87d3",
+        "control": "compiled archive rule with upstream overflow:auto addition",
+        "sourceHtmlSha256": "f6dbea42a814396d4606373fafab0be490cac875018475a45c73a2d8688224f7",
+        "beforeDocsCssSha256": "2c2ccc87a7afebd08dfa17b4519fa64d4ca6c138891e44cbf5105395bbef0729",
+        "fixedDocsCssSha256": "60697035da7d4ef6a1aa0307f26c8439df5a5f44cafb58bc01b1ba7d9a578b0f",
+        "docsearchSha256": "40e49153fadaf4072dc9790805b888075e3868305db6f5c170d73739336e5ff4",
+        "protocolSha256": "0f7a83b95ac594bc8bbe38c958d90747f69618151017321e371e29e32d0a4920"
+      },
+      "before": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 16,
+        "width": 423.15625,
+        "height": 46,
+        "textWidth": 423.15625,
+        "targetScrollWidth": 423,
+        "effectiveRight": 439.15625,
+        "viewportWidth": 375,
+        "visualViewportWidth": 375,
+        "visualViewportScale": 1,
+        "documentWidth": 439,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [],
+        "nodes": 892,
+        "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+      },
+      "fixed": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 16,
+        "width": 423.15625,
+        "height": 46,
+        "textWidth": 423.15625,
+        "targetScrollWidth": 423,
+        "effectiveRight": 375,
+        "viewportWidth": 375,
+        "visualViewportWidth": 375,
+        "visualViewportScale": 1,
+        "documentWidth": 375,
+        "scrollX": 0,
+        "scrollY": 0,
+        "clipping": [
+          {
+            "tag": "div",
+            "overflowX": "auto"
+          }
+        ],
+        "nodes": 892,
+        "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+      },
+      "product": {
+        "schemaVersion": "breakcase/0.1",
+        "version": "0.1.0-alpha.2",
+        "status": "reproduced",
+        "selector": ".bd-example > .btn-group[data-toggle=\"buttons\"]:has(input[type=\"checkbox\"])",
+        "profile": {
+          "viewport": {
+            "width": 375,
+            "height": 667
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": true,
+          "hasTouch": true,
+          "colorScheme": "light"
+        },
+        "browser": "149.0.7827.55",
+        "createdAt": "2026-09-22T06:10:20.431Z",
+        "witnessVersion": 2,
+        "witness": "right-side document overflow; same target text, box/text dimensions and visual viewport within 1 CSS pixel; same visual scale within 0.001",
+        "coordinates": "document-space; scroll position is recorded separately",
+        "warnings": [],
+        "before": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 439.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 439,
+          "scrollX": 0,
+          "scrollY": 5926,
+          "clipping": [],
+          "nodes": 892,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "capture": {
+          "stylesheets": 4,
+          "images": 0,
+          "embeddedResourceCount": 0,
+          "corsFetchedStylesheets": 1
+        },
+        "captured": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 439.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 439,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 880,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "reduction": {
+          "checks": 322,
+          "budgetLimited": false,
+          "elapsedMs": 7963,
+          "maxChecks": 500,
+          "maxDurationMs": 30000
+        },
+        "after": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 15,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 438.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 438,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 48,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "offline": {
+          "freshContext": true,
+          "scriptsDisabled": true,
+          "otherRequestsBlocked": 0
+        },
+        "bytes": {
+          "captured": 234536,
+          "reduced": 5314
+        },
+        "sha256": {
+          "captured": "90e3a2453c2e7d508023c0889f545c375d8823838044666d94df7f0811d655e8",
+          "reduced": "ba2b53c716ec8ee33ccb95d1a5ebcddfc822c8d3cd796e6f543413b8ab192fb8"
+        },
+        "message": "The smaller static file preserves the selected overflow in a fresh offline browser context."
+      },
+      "offlineRecheck": {
+        "schemaVersion": "breakcase-check/0.1",
+        "status": "reproduced",
+        "observation": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 15,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 438.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 438,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 48,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "browser": "149.0.7827.55",
+        "recordedBrowser": "149.0.7827.55",
+        "witnessVersion": 2,
+        "visualViewportCompared": true,
+        "sameBytes": true,
+        "otherRequestsBlocked": 0
+      },
+      "productOperationMs": 8674,
+      "sourcePageUnchanged": true,
+      "baseline": {
+        "tools": {
+          "singleFile": "2.15.2",
+          "lithium": "8b567a5f7572240fc15d25ad0df173f2008010a3",
+          "browser": "149.0.7827.55"
+        },
+        "before": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 439.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 439,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 892,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "after": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 16,
+          "width": 423.15625,
+          "height": 46,
+          "textWidth": 423.15625,
+          "targetScrollWidth": 423,
+          "effectiveRight": 439.15625,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 439,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 14,
+          "textSha256": "84ba749e6e3a16923f686515ccda8b1393b2a3c05b149b60e3751130be0cdaeb"
+        },
+        "capturedBytes": 55434,
+        "reducedBytes": 1017,
+        "reducedSha256": "1d24af91dfd72463fdd6b9cffa49dbaa1e678c756ddafe55e7fa3132613254e3",
+        "captureMsIncludingStartupAndWait": 11496,
+        "formattingAndValidationMs": 39,
+        "reductionMs": 18510,
+        "phases": [
+          {
+            "strategy": "lines",
+            "exit": 0,
+            "elapsedMs": 7550,
+            "checks": 197,
+            "bestBytes": 1769,
+            "budgetLimited": false
+          },
+          {
+            "strategy": "char",
+            "exit": null,
+            "elapsedMs": 10956,
+            "checks": 303,
+            "bestBytes": 1017,
+            "budgetLimited": true
+          }
+        ],
+        "oracleChecks": 500,
+        "budgetLimited": true,
+        "freshOfflineReopen": true,
+        "fixedControlRejected": true
+      }
+    }
+  ],
+  "alpha1PaginationRefusal": {
+    "schemaVersion": "breakcase/0.1",
+    "version": "0.1.0-alpha.1",
+    "status": "capture-incomplete",
+    "selector": ".bd-example .pagination-lg",
+    "profile": {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": true,
+      "hasTouch": true,
+      "colorScheme": "light"
+    },
+    "browser": "149.0.7827.55",
+    "createdAt": "2026-09-22T05:34:03.276Z",
+    "witness": "right-side visible document overflow; same target text and horizontal/box/text dimensions within 1 CSS pixel",
+    "coordinates": "document-space; scroll position is recorded separately",
+    "warnings": [
+      {
+        "kind": "stylesheet-not-readable",
+        "index": 2
+      }
+    ],
+    "before": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 16,
+      "width": 343,
+      "height": 56,
+      "textWidth": 394.296875,
+      "targetScrollWidth": 394,
+      "effectiveRight": 410.296875,
+      "viewportWidth": 375,
+      "documentWidth": 410,
+      "scrollX": 0,
+      "scrollY": 3368,
+      "clipping": [],
+      "nodes": 1015,
+      "textSha256": "903b0dd973c009a17bc0cb6b76cf4039958074d86df80ea9d0a1952e913e76c6"
+    },
+    "message": "The page contains unsupported or unreadable capture content. No reproduction is claimed."
+  },
+  "rejectedRadioTarget": {
+    "id": "B-P04",
+    "before": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 16,
+      "width": 331.546875,
+      "height": 46,
+      "textWidth": 331.546875,
+      "targetScrollWidth": 332,
+      "effectiveRight": 348,
+      "viewportWidth": 375,
+      "documentWidth": 439,
+      "scrollX": 0,
+      "scrollY": 0,
+      "clipping": [],
+      "nodes": 892,
+      "textSha256": "1803e11264f8125431858bbe43b89af75c3fb1dd03c1543a54677a51ff021f4f"
+    },
+    "product": {
+      "schemaVersion": "breakcase/0.1",
+      "version": "0.1.0-alpha.1",
+      "status": "no-overflow",
+      "selector": ".bd-example > .btn-group[data-toggle=\"buttons\"]:has(input[type=\"radio\"])",
+      "profile": {
+        "viewport": {
+          "width": 375,
+          "height": 667
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": true,
+        "hasTouch": true,
+        "colorScheme": "light"
+      },
+      "browser": "149.0.7827.55",
+      "createdAt": "2026-09-22T05:34:03.860Z",
+      "witness": "right-side visible document overflow; same target text and horizontal/box/text dimensions within 1 CSS pixel",
+      "coordinates": "document-space; scroll position is recorded separately",
+      "warnings": [],
+      "before": {
+        "targetCount": 1,
+        "visible": true,
+        "left": 16,
+        "width": 331.546875,
+        "height": 46,
+        "textWidth": 331.546875,
+        "targetScrollWidth": 332,
+        "effectiveRight": 348,
+        "viewportWidth": 375,
+        "documentWidth": 439,
+        "scrollX": 0,
+        "scrollY": 6317,
+        "clipping": [],
+        "nodes": 892,
+        "textSha256": "1803e11264f8125431858bbe43b89af75c3fb1dd03c1543a54677a51ff021f4f"
+      },
+      "message": "The selected element does not show the supported right-side document overflow."
+    }
+  },
+  "supersededBaselineViewportAudit": [
+    {
+      "id": "B-P03",
+      "kind": "source",
+      "meta": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "innerWidth": 410,
+      "clientWidth": 375,
+      "documentWidth": 410,
+      "visualWidth": 375,
+      "visualScale": 1,
+      "visualOffsetLeft": 0
+    },
+    {
+      "id": "B-P03",
+      "kind": "product",
+      "meta": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "innerWidth": 409,
+      "clientWidth": 375,
+      "documentWidth": 409,
+      "visualWidth": 375,
+      "visualScale": 1,
+      "visualOffsetLeft": 0
+    },
+    {
+      "id": "B-P03",
+      "kind": "baseline",
+      "meta": "width=device-width, initiak-to-fit=no",
+      "innerWidth": 409,
+      "clientWidth": 375,
+      "documentWidth": 409,
+      "visualWidth": 409,
+      "visualScale": 0.9168704152107239,
+      "visualOffsetLeft": 0
+    },
+    {
+      "id": "B-P05",
+      "kind": "source",
+      "meta": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "innerWidth": 439,
+      "clientWidth": 375,
+      "documentWidth": 439,
+      "visualWidth": 375,
+      "visualScale": 1,
+      "visualOffsetLeft": 0
+    },
+    {
+      "id": "B-P05",
+      "kind": "product",
+      "meta": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "innerWidth": 438,
+      "clientWidth": 375,
+      "documentWidth": 438,
+      "visualWidth": 375,
+      "visualScale": 1,
+      "visualOffsetLeft": 0
+    },
+    {
+      "id": "B-P05",
+      "kind": "baseline",
+      "meta": "width=device-width, initiak-to-fit=no",
+      "innerWidth": 439,
+      "clientWidth": 375,
+      "documentWidth": 439,
+      "visualWidth": 439,
+      "visualScale": 0.8542141318321228,
+      "visualOffsetLeft": 0
+    }
+  ],
+  "simpleCssViewportAudit": {
+    "profile": {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": true,
+      "hasTouch": true,
+      "colorScheme": "light"
+    },
+    "selector": "table",
+    "before": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 18.75,
+      "width": 460.046875,
+      "height": 289.875,
+      "textWidth": 459.046875,
+      "targetScrollWidth": 460,
+      "effectiveRight": 478.796875,
+      "viewportWidth": 375,
+      "visualViewportWidth": 375,
+      "visualViewportScale": 1,
+      "documentWidth": 479,
+      "scrollX": 0,
+      "scrollY": 0,
+      "clipping": [],
+      "nodes": 559,
+      "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+    },
+    "checks": [
+      {
+        "name": "alpha1Product",
+        "observed": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 375,
+          "visualViewportScale": 1,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 33,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "matchesStrengthenedWitness": true
+      },
+      {
+        "name": "previousBaseline",
+        "observed": {
+          "targetCount": 1,
+          "visible": true,
+          "left": 18.75,
+          "width": 460.046875,
+          "height": 289.875,
+          "textWidth": 459.046875,
+          "targetScrollWidth": 460,
+          "effectiveRight": 478.796875,
+          "viewportWidth": 375,
+          "visualViewportWidth": 478.9999694824219,
+          "visualViewportScale": 0.7828810214996338,
+          "documentWidth": 479,
+          "scrollX": 0,
+          "scrollY": 0,
+          "clipping": [],
+          "nodes": 27,
+          "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+        },
+        "matchesStrengthenedWitness": false
+      }
+    ]
+  },
+  "simpleCssCorrectedBaseline": {
+    "before": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 18.75,
+      "width": 460.046875,
+      "height": 289.875,
+      "textWidth": 459.046875,
+      "targetScrollWidth": 460,
+      "effectiveRight": 478.796875,
+      "viewportWidth": 375,
+      "visualViewportWidth": 375,
+      "visualViewportScale": 1,
+      "documentWidth": 479,
+      "scrollX": 0,
+      "scrollY": 0,
+      "clipping": [],
+      "nodes": 559,
+      "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+    },
+    "after": {
+      "targetCount": 1,
+      "visible": true,
+      "left": 18.75,
+      "width": 460.046875,
+      "height": 289.875,
+      "textWidth": 459.046875,
+      "targetScrollWidth": 460,
+      "effectiveRight": 478.796875,
+      "viewportWidth": 375,
+      "visualViewportWidth": 375,
+      "visualViewportScale": 1,
+      "documentWidth": 479,
+      "scrollX": 0,
+      "scrollY": 0,
+      "clipping": [],
+      "nodes": 27,
+      "textSha256": "59779ab6bd46e272d60a4c20e6ec1b67295f53bd6d8b6bab7756706c79e9f83e"
+    },
+    "reducedBytes": 892,
+    "reducedSha256": "2614863f952e3399942a804ff98deabc094633e4e9b5f40510e1900233ee7eea",
+    "oracleChecks": 500,
+    "budgetLimited": true,
+    "freshOfflineReopen": true,
+    "reductionMs": 21506
+  },
+  "docsearchResponse": {
+    "url": "https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css",
+    "sha256": "40e49153fadaf4072dc9790805b888075e3868305db6f5c170d73739336e5ff4",
+    "unchangedSinceAcquisition": true,
+    "accessControlAllowOrigin": "*",
+    "contentType": "text/css; charset=utf-8"
+  },
+  "limits": [
+    "Two Bootstrap inputs share one report/fix family",
+    "Archived pages predate the report; checkbox markup differs by a later class addition",
+    "Current DocSearch CSS historical version unknown",
+    "Remote search/ads/analytics scripts blocked; search script error retained",
+    "No independent agent/user trial or complete task-cost measurement",
+    "Witness preservation is not full visual or root-cause equivalence"
+  ]
+}

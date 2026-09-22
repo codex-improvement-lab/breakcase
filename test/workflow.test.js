@@ -129,3 +129,87 @@ test("historical Proofline renderer regression and actual fixed renderer", async
     await context.close();
   }
 });
+
+test("CORS-readable linked CSS survives redirect/resources; denied or oversized CSS stays explicit", async () => {
+  const requests = [];
+  const css = 'body{margin:0}#target{width:700px;font:16px/24px monospace;background-image:url("tile.svg")}';
+  const assetServer = createServer((req, res) => {
+    requests.push({ url: req.url, mode: req.headers["sec-fetch-mode"], cookie: Boolean(req.headers.cookie) });
+    const cors = req.url !== "/denied.css" ? { "Access-Control-Allow-Origin": "*" } : {};
+    if (req.url === "/redirect.css") { res.writeHead(302, { ...cors, Location: "/nested/style.css" }); res.end(); return; }
+    if (req.url === "/nested/tile.svg") {
+      res.writeHead(200, { ...cors, "Content-Type": "image/svg+xml" });
+      res.end('<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><rect width="12" height="12" fill="red"/></svg>'); return;
+    }
+    res.writeHead(200, { ...cors, "Content-Type": "text/css; charset=utf-8" });
+    res.end(req.url === "/large.css" ? css + "/*" + "x".repeat(5_000_001) + "*/" : css);
+  });
+  await new Promise(resolve => assetServer.listen(0, "127.0.0.1", resolve));
+  const assetUrl = `http://127.0.0.1:${assetServer.address().port}`;
+  const site = createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    const route = req.url === "/denied" ? "/denied.css" : req.url === "/large" ? "/large.css" : "/redirect.css";
+    res.end(`<!doctype html><meta charset="utf-8"><link rel="stylesheet" media="screen" href="${assetUrl}${route}"><div id="target">Cross-origin stylesheet fixture.</div>`);
+  });
+  await new Promise(resolve => site.listen(0, "127.0.0.1", resolve));
+  const siteUrl = `http://127.0.0.1:${site.address().port}`;
+  const context = await browser.newContext(profile), page = await context.newPage();
+  await context.addCookies([{ name: "test_session", value: "fixture-only", domain: "127.0.0.1", path: "/" }]);
+  let stopped = false;
+  try {
+    await page.goto(siteUrl);
+    assert.equal(await page.evaluate(() => { try { return Boolean(document.styleSheets[0].cssRules); } catch { return false; } }), false);
+    const before = await page.content();
+    const outputDir = path.join(temp, "cors-css");
+    const result = await reduceOverflow({ page, selector: "#target", profile, outputDir });
+    assert.equal(result.status, "reproduced", result.message);
+    assert.equal(result.capture.corsFetchedStylesheets, 1);
+    assert.equal(await page.content(), before);
+    const captured = await readFile(path.join(outputDir, "capture.html"), "utf8");
+    assert.match(captured, /data:image\/svg\+xml;base64,/);
+    assert.ok(requests.some(r => r.url === "/nested/tile.svg" && r.mode === "cors"));
+    assert.ok(requests.filter(r => r.mode === "cors").every(r => !r.cookie));
+    for (const route of ["denied", "large"]) {
+      await page.goto(`${siteUrl}/${route}`);
+      const refused = await reduceOverflow({ page, selector: "#target", profile, outputDir: path.join(temp, `cors-${route}`) });
+      assert.equal(refused.status, "capture-incomplete");
+      assert.ok(refused.warnings.some(w => w.kind === "stylesheet-not-readable"));
+    }
+    await context.close();
+    await Promise.all([new Promise(resolve => site.close(resolve)), new Promise(resolve => assetServer.close(resolve))]); stopped = true;
+    const checked = await checkReproduction({ file: path.join(outputDir, "repro.html"), resultFile: path.join(outputDir, "result.json") });
+    assert.equal(checked.status, "reproduced"); assert.equal(checked.sameBytes, true);
+  } finally {
+    await context.close();
+    if (!stopped) await Promise.all([new Promise(resolve => site.close(resolve)), new Promise(resolve => assetServer.close(resolve))]);
+  }
+});
+
+test("mobile file recheck rejects zoom changes that preserve the layout viewport", async () => {
+  const mobile = { ...profile, isMobile: true, hasTouch: true };
+  const context = await browser.newContext(mobile), page = await context.newPage();
+  await page.setContent('<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1">' + fixture);
+  const outputDir = path.join(temp, "mobile-viewport");
+  try {
+    const result = await reduceOverflow({ page, selector: "#target", profile: mobile, outputDir });
+    assert.equal(result.status, "reproduced", result.message);
+    assert.equal(result.witnessVersion, 2);
+    const file = path.join(outputDir, "repro.html"), resultFile = path.join(outputDir, "result.json");
+    const original = await checkReproduction({ file, resultFile });
+    assert.equal(original.status, "reproduced"); assert.equal(original.visualViewportCompared, true);
+    const scaledFile = path.join(temp, "mobile-autoscale.html");
+    await writeFile(scaledFile, (await readFile(file, "utf8")).replace("width=device-width,initial-scale=1", "width=device-width"));
+    const scaled = await checkReproduction({ file: scaledFile, resultFile });
+    assert.equal(scaled.observation.viewportWidth, result.before.viewportWidth);
+    assert.equal(scaled.observation.textSha256, result.before.textSha256);
+    assert.notEqual(scaled.observation.visualViewportScale, result.before.visualViewportScale);
+    assert.equal(scaled.status, "not-reproduced");
+    const legacy = structuredClone(result); delete legacy.witnessVersion;
+    delete legacy.before.visualViewportWidth; delete legacy.before.visualViewportScale;
+    const legacyFile = path.join(temp, "legacy-witness.json"); await writeFile(legacyFile, JSON.stringify(legacy));
+    const legacyCheck = await checkReproduction({ file, resultFile: legacyFile });
+    assert.equal(legacyCheck.status, "reproduced"); assert.equal(legacyCheck.visualViewportCompared, false);
+    legacy.witnessVersion = 2; await writeFile(legacyFile, JSON.stringify(legacy));
+    await assert.rejects(checkReproduction({ file, resultFile: legacyFile }), /requires visual viewport/);
+  } finally { await context.close(); }
+});

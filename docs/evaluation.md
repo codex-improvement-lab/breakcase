@@ -49,11 +49,16 @@ Chromium 149.0.7827.55. Hosted CI and publication status are recorded in the rel
 notes when actually observed. Passing automated checks does not establish physical
 device validation or external adoption.
 
+Alpha.2 adds regressions for CORS-permitted stylesheet retrieval and mobile visual
+viewport preservation. The [Bootstrap follow-up](bootstrap-cases.md) records the
+real capture gap, the weaker-contract counterexample and corrected baseline runs.
+
 ## What remains unknown
 
-The subsequent [public historical cases](historical-cases.md) add one accepted
-complete-article handoff and two skip-reduction negatives. The competent
-SingleFile/Lithium baseline is smaller on that accepted case too. They do not
+The [initial historical cases](historical-cases.md) and subsequent
+[Bootstrap cases](bootstrap-cases.md) cover three accepted inputs from two projects
+and two skip negatives. The corrected SingleFile/Lithium baseline is smaller on
+all three accepted inputs. These scripted observations do not
 resolve the independent-use or whole-task-cost questions below.
 
 - Independent agent choice and repeat use.

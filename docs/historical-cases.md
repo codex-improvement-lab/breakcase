@@ -5,6 +5,12 @@ not independent users or blind agent trials. The product is the released
 0.1.0-alpha.1 revision `6763e7af16573a0868487cf95553d36728739081`.
 Browser: Chromium 149.0.7827.55, Windows, Node 24.19.0.
 
+Update 2026-09-22: the later [viewport audit](bootstrap-cases.md) found that the
+original 892-byte baseline file changed mobile zoom while passing the old fields.
+A distinct 892-byte rerun now passes the stronger viewport contract; the original
+product file also passes that independent audit. The older measurements below
+remain a record of their original contract, not retroactive version-2 evidence.
+
 ## A complete article with a real table-overflow fix
 
 [simple.css PR 78](https://github.com/kevquirk/simple.css/pull/78) fixes a table
@@ -81,9 +87,10 @@ scrollable. The original report involved an iPhone SE; current Chromium emulatio
 does not reproduce or validate that physical Safari environment.
 
 `no-overflow` means that the selected supported predicate is absent. It does not
-mean the page has no layout problems. The roadmap still requires two more
-accepted positive cases, including a second independent project. These two
-negatives do not count toward that requirement.
+mean the page has no layout problems. At this initial checkpoint two more positive
+cases were still required; the [Bootstrap follow-up](bootstrap-cases.md) records
+those inputs with explicit reconstruction and shared-source limits. These two
+negatives do not count as positive defects.
 
 ## Evidence boundary
 

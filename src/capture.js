@@ -3,9 +3,11 @@ export async function capturePage(page) {
   const plan = await page.evaluate(() => ({
     base: location.href,
     styles: [...document.querySelectorAll('style,link[rel="stylesheet"]')].map((node, index) => {
-      try { return { index, base: node.href || location.href, media: node.media || "",
-        disabled: Boolean(node.sheet?.disabled), css: [...(node.sheet?.cssRules || [])].map(rule => rule.cssText).join("\n") }; }
-      catch { return { index, unreadable: true }; }
+      const item = { index, base: node.sheet?.href || node.href || location.href,
+        href: node.tagName === "LINK" ? node.href : null, media: node.media || "",
+        disabled: Boolean(node.disabled || node.sheet?.disabled) };
+      try { return { ...item, css: [...(node.sheet?.cssRules || [])].map(rule => rule.cssText).join("\n") }; }
+      catch { return { ...item, unreadable: true }; }
     }),
     images: [...document.querySelectorAll("img")].map((node, index) => ({ index, url: node.currentSrc || node.src })),
     inlineStyles: [...document.querySelectorAll("[style]")].map((node, index) => ({ index, css: node.getAttribute("style") })),
@@ -16,6 +18,7 @@ export async function capturePage(page) {
     media: document.querySelectorAll("video,audio,object,embed").length
   }));
   const warnings = [];
+  let corsFetchedStylesheets = 0;
   for (const name of ["adoptedStylesheets", "frames", "shadowRoots", "canvases", "media"]) if (plan[name]) warnings.push({ kind: `unsupported-${name}`, count: plan[name] });
   const cache = new Map();
   async function inline(url, base) {
@@ -49,8 +52,43 @@ export async function capturePage(page) {
     }
     return result;
   }
+  async function fetchReadableCss(url) {
+    if (!url || !["http:", "https:"].includes(new URL(url).protocol)) return null;
+    // A cross-origin link can be applied by the browser yet hide its CSSOM.
+    // Retry through ordinary page fetch, keeping CSP/CORS enforcement and never
+    // sending cross-origin credentials. Do not use a privileged request client.
+    return page.evaluate(async url => {
+      try {
+        const response = await fetch(url, { credentials: "same-origin", signal: AbortSignal.timeout(5000) });
+        const type = response.headers.get("content-type") || "";
+        if (!response.ok || type.split(";", 1)[0].trim().toLowerCase() !== "text/css") return null;
+        if (Number(response.headers.get("content-length")) > 5_000_000) return null;
+        const reader = response.body.getReader(), chunks = [];
+        let size = 0;
+        while (true) {
+          const chunk = await reader.read();
+          if (chunk.done) break;
+          size += chunk.value.byteLength;
+          if (size > 5_000_000) { await reader.cancel(); return null; }
+          chunks.push(chunk.value);
+        }
+        const bytes = new Uint8Array(size);
+        let offset = 0;
+        for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+        const charset = /charset\s*=\s*["']?([^\s;"']+)/i.exec(type)?.[1] || document.characterSet;
+        if (!/^utf-?8$/i.test(charset) && bytes.some(byte => byte >= 128)) return null;
+        return { css: new TextDecoder("utf-8", { fatal: true }).decode(bytes), base: response.url };
+      } catch { return null; }
+    }, url);
+  }
   for (const style of plan.styles) {
-    if (style.unreadable) { warnings.push({ kind: "stylesheet-not-readable", index: style.index }); continue; }
+    if (style.disabled) continue;
+    if (style.unreadable) {
+      const fetched = await fetchReadableCss(style.href);
+      if (!fetched) { warnings.push({ kind: "stylesheet-not-readable", index: style.index }); continue; }
+      Object.assign(style, fetched, { unreadable: false });
+      corsFetchedStylesheets++;
+    }
     if (/@import\b/i.test(style.css)) warnings.push({ kind: "unflattened-css-import", index: style.index });
     style.css = await rewriteCss(style.css, style.base);
   }
@@ -95,6 +133,7 @@ export async function capturePage(page) {
     return "<!doctype html>\n" + copy.outerHTML + "\n";
   }, plan);
   return { html, warnings, stylesheets: plan.styles.length, images: plan.images.length,
+    corsFetchedStylesheets,
     embeddedResourceCount: [...cache.values()].filter(Boolean).length,
     boundary: "Static DOM/CSS state, not application behavior or a security-sanitization guarantee" };
 }

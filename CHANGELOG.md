@@ -1,10 +1,20 @@
 # Changelog
 
-## Unreleased
+## 0.1.0-alpha.2
+
+- Preserve the visual viewport width and zoom in witness version 2. File checks
+  reject mobile auto-zoom changes that previously passed the layout-only fields;
+  legacy records remain explicitly identified as using the earlier comparison.
+
+- Capture linked UTF-8 CSS when CSSOM access is unavailable but an ordinary
+  browser CORS fetch is permitted. Preserve redirected resource bases and the
+  existing no-cross-origin-credentials behavior; denied and oversized stylesheets
+  remain explicit failures. Record the successful fallback count in JSON.
+- Include the linked historical-case documentation and measurements in the package.
 
 - Document a public historical article handoff and two skip-reduction cases,
   including the smaller competent baseline and retained unsuccessful attempts.
-  Documentation only; the 0.1.0-alpha.1 runtime and release assets are unchanged.
+  The earlier 0.1.0-alpha.1 release and assets remain unchanged.
 
 ## 0.1.0-alpha.1
 

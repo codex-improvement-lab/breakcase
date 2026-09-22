@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { mkdtemp, realpath, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -25,11 +25,25 @@ try {
   const relativeEntry = path.relative(installedRoot, await realpath(entry));
   assert.ok(relativeEntry && relativeEntry !== ".." && !relativeEntry.startsWith(`..${path.sep}`) && !path.isAbsolute(relativeEntry));
   const cli = path.join(path.dirname(entry), "cli.js");
+  const packageRoot = path.dirname(path.dirname(entry));
+  const metadata = JSON.parse(await readFile(path.join(packageRoot, "package.json"), "utf8"));
+  assert.equal((await run(process.execPath, [cli, "--version"], temp)).trim(), metadata.version);
+  await readFile(path.join(packageRoot, "docs/historical-cases.md"), "utf8");
+  JSON.parse(await readFile(path.join(packageRoot, "docs/evidence/historical-cases-2026-09-21.json"), "utf8"));
   const out = path.join(temp, "case");
   const demo = JSON.parse(await run(process.execPath, [cli, "demo", "--out", out, "--json"], temp));
   assert.equal(demo.status, "reproduced");
+  assert.equal(demo.version, metadata.version);
   const checked = JSON.parse(await run(process.execPath, [cli, "check", path.join(out, "repro.html"), "--result", path.join(out, "result.json"), "--json"], temp));
   assert.equal(checked.status, "reproduced"); assert.equal(checked.sameBytes, true);
+  assert.equal(checked.visualViewportCompared, true); assert.equal(checked.witnessVersion, 2);
+  const legacy = JSON.parse(await readFile(path.join(out, "result.json"), "utf8"));
+  delete legacy.witnessVersion; delete legacy.before.visualViewportWidth; delete legacy.before.visualViewportScale;
+  legacy.version = "0.1.0-alpha.1"; legacy.witness = "Legacy layout dimensions";
+  const legacyFile = path.join(temp, "legacy.json"); await writeFile(legacyFile, JSON.stringify(legacy));
+  const legacyCheck = JSON.parse(await run(process.execPath, [cli, "check", path.join(out, "repro.html"), "--result", legacyFile, "--json"], temp));
+  assert.equal(legacyCheck.status, "reproduced"); assert.equal(legacyCheck.visualViewportCompared, false);
+  assert.equal(legacyCheck.witnessVersion, 1);
   const refused = JSON.parse(await run(process.execPath, [cli, "demo", "--out", out, "--json"], temp, 2));
   assert.equal(refused.status, "error"); assert.match(refused.message, /EEXIST/);
   process.stdout.write(JSON.stringify({ packedInstall: "passed", demo: demo.status, check: checked.status,

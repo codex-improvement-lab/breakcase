@@ -98,6 +98,8 @@ const result = await reduceOverflow({
   page, profile,
   selector: '#release-key',
   outputDir: './overflow-case',
+  maxChecks: 500,
+  maxDurationMs: 30_000,
 });
 console.log(result.status, result.bytes);
 await browser.close();
@@ -107,6 +109,13 @@ Pass the same profile used for your source context. Breakcase reads that Page
 without navigating, scrolling, editing or closing it. Reduction happens in separate
 contexts with scripts disabled and resource requests blocked. It does not search
 your browser profiles, attach to your account or recover login credentials.
+
+`maxChecks` (default `500`, range `1..10000`) and `maxDurationMs` (default
+`30_000`, range `100..300000`) limit reduction work. The CLI equivalents are
+`--max-checks` and `--max-ms`. The time limit covers the reduction phase;
+source preparation, capture, screenshots and final reopening take additional
+time. Reaching a limit retains the best accepted file and sets
+`result.reduction.budgetLimited`. The output directory must not already exist.
 
 ## The selected witness
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.3
+
+- Reject a reduced file that introduces more than one CSS pixel of new document
+  width while its selected element still matches. The trigger came from a
+  bounded internal handoff: an initial ordinary-script extraction passed the
+  selected witness but widened the document from 385 to 435 pixels. The
+  revised ordinary-script file and the Breakcase artifact both passed review;
+  the trial does not show broad task-time superiority.
+- Record witness version 3 and `documentWidthCapCompared` in checks. Versions 1
+  and 2 keep their saved comparison scope; no old result is reclassified as a
+  version-3 success.
+
+
 ## 0.1.0-alpha.2
 
 - Preserve the visual viewport width and zoom in witness version 2. File checks

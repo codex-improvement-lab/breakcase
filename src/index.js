@@ -7,7 +7,7 @@ import { reduceStructure } from "./reduce.js";
 import { hasOverflow, matches, normalizeProfile, observe, sha256 } from "./witness.js";
 import { renderReport } from "./report.js";
 
-export const version = "0.1.0-alpha.2";
+export const version = "0.1.0-alpha.3";
 export { hasOverflow, matches, observe } from "./witness.js";
 
 async function loadHtml(page, html) {
@@ -46,8 +46,8 @@ export async function reduceOverflow({ page, selector, outputDir, profile, maxCh
   await mkdir(out); // Existing output is never overwritten.
   const result = { schemaVersion: "breakcase/0.1", version, status: "error", selector, profile,
     browser: browser.version(), createdAt: new Date().toISOString(),
-    witnessVersion: 2,
-    witness: "right-side document overflow; same target text, box/text dimensions and visual viewport within 1 CSS pixel; same visual scale within 0.001",
+    witnessVersion: 3,
+    witness: "right-side document overflow; same target text, box/text dimensions and visual viewport within 1 CSS pixel; same visual scale within 0.001; no document-width increase beyond 1 CSS pixel",
     coordinates: "document-space; scroll position is recorded separately", warnings: [] };
   let working, reopened;
   async function finish(status, message) {
@@ -57,29 +57,30 @@ export async function reduceOverflow({ page, selector, outputDir, profile, maxCh
     return result;
   }
   try {
+    const matchesCurrent = (before, after) => matches(before, after, { documentWidthCap: true });
     await page.waitForFunction(() => document.fonts.status === "loaded", null, { timeout: 5000 });
     result.before = await observe(page, selector);
     if (result.before.targetCount !== 1) return await finish("invalid-target", `Selector matched ${result.before.targetCount} elements; exactly one is required.`);
     if (!hasOverflow(result.before)) return await finish("no-overflow", "The selected element does not show the supported right-side document overflow.");
     await page.waitForTimeout(100);
-    if (!matches(result.before, await observe(page, selector))) return await finish("unstable-source", "The selected layout changed between observations. Capture a settled state.");
+    if (!matchesCurrent(result.before, await observe(page, selector))) return await finish("unstable-source", "The selected layout changed between observations. Capture a settled state.");
     const captured = await capturePage(page);
     result.capture = { stylesheets: captured.stylesheets, images: captured.images,
       embeddedResourceCount: captured.embeddedResourceCount, corsFetchedStylesheets: captured.corsFetchedStylesheets };
     result.warnings = captured.warnings;
     if (captured.warnings.length) return await finish("capture-incomplete", "The page contains unsupported or unreadable capture content. No reproduction is claimed.");
     if (Buffer.byteLength(captured.html) > 10_000_000) return await finish("capture-incomplete", "Static capture exceeds the preview's 10 MB limit.");
-    if (!matches(result.before, await observe(page, selector))) return await finish("unstable-source", "The selected layout changed during capture.");
+    if (!matchesCurrent(result.before, await observe(page, selector))) return await finish("unstable-source", "The selected layout changed during capture.");
     working = (await offlineContext(browser, profile)).context;
     const oracle = await working.newPage(), edit = await working.newPage();
     await loadHtml(oracle, captured.html);
     result.captured = await observe(oracle, selector);
-    if (!matches(result.before, result.captured)) return await finish("capture-mismatch", "The offline capture did not preserve the selected layout. Check profile, resources or dynamic content.");
+    if (!matchesCurrent(result.before, result.captured)) return await finish("capture-mismatch", "The offline capture did not preserve the selected layout. Check profile, resources or dynamic content.");
     await writeFile(path.join(out, "capture.html"), captured.html);
     await screenshot(oracle, selector, path.join(out, "capture.png"));
     const started = performance.now();
     const reduced = await reduceStructure({ html: captured.html, selector, page: edit, maxChecks, maxDurationMs,
-      interesting: async html => { await loadHtml(oracle, html); return matches(result.before, await observe(oracle, selector)); } });
+      interesting: async html => { await loadHtml(oracle, html); return matchesCurrent(result.before, await observe(oracle, selector)); } });
     result.reduction = { checks: reduced.checks, budgetLimited: reduced.budgetLimited,
       elapsedMs: Math.round(performance.now() - started), maxChecks, maxDurationMs };
     const filename = path.join(out, "repro.html");
@@ -90,7 +91,7 @@ export async function reduceOverflow({ page, selector, outputDir, profile, maxCh
     const checkPage = await reopened.newPage(); await checkPage.goto(fileUrl, { timeout: 5000 });
     result.after = await observe(checkPage, selector);
     result.offline = { freshContext: true, scriptsDisabled: true, otherRequestsBlocked: fresh.blocked.length };
-    if (!matches(result.before, result.after) || fresh.blocked.length) return await finish("capture-mismatch", "Fresh file reopening failed the selected witness or requested external resources.");
+    if (!matchesCurrent(result.before, result.after) || fresh.blocked.length) return await finish("capture-mismatch", "Fresh file reopening failed the selected witness or requested external resources.");
     await screenshot(checkPage, selector, path.join(out, "repro.png"));
     result.bytes = { captured: Buffer.byteLength(captured.html), reduced: Buffer.byteLength(reduced.html) };
     result.sha256 = { captured: sha256(captured.html), reduced: sha256(reduced.html) };
@@ -108,9 +109,11 @@ export async function checkReproduction({ file, resultFile }) {
   if (recorded.schemaVersion !== "breakcase/0.1" || recorded.status !== "reproduced" || typeof recorded.selector !== "string") {
     throw new Error("Expected a successful breakcase/0.1 result.json");
   }
-  if (![undefined, 1, 2].includes(recorded.witnessVersion)) throw new Error("Unsupported witness version");
+  if (![undefined, 1, 2, 3].includes(recorded.witnessVersion)) throw new Error("Unsupported witness version");
   const visualViewportCompared = Number.isFinite(recorded.before?.visualViewportWidth) && Number.isFinite(recorded.before?.visualViewportScale);
-  if (recorded.witnessVersion === 2 && !visualViewportCompared) throw new Error("Witness version 2 requires visual viewport width and scale");
+  if (recorded.witnessVersion >= 2 && !visualViewportCompared) throw new Error("Witness version 2 or later requires visual viewport width and scale");
+  const documentWidthCapCompared = recorded.witnessVersion === 3;
+  if (documentWidthCapCompared && !Number.isFinite(recorded.before?.documentWidth)) throw new Error("Witness version 3 requires original document width");
   const profile = normalizeProfile(recorded.profile);
   const bytes = await readFile(file), fileUrl = pathToFileURL(path.resolve(file)).href;
   const browser = await chromium.launch({ headless: true });
@@ -118,10 +121,10 @@ export async function checkReproduction({ file, resultFile }) {
     const { context, blocked } = await offlineContext(browser, profile, fileUrl);
     const page = await context.newPage(); await page.goto(fileUrl, { timeout: 5000 });
     const observation = await observe(page, recorded.selector);
-    const reproduced = matches(recorded.before, observation) && blocked.length === 0;
+    const reproduced = matches(recorded.before, observation, { documentWidthCap: documentWidthCapCompared }) && blocked.length === 0;
     return { schemaVersion: "breakcase-check/0.1", version, status: reproduced ? "reproduced" : "not-reproduced",
       observation, browser: browser.version(), recordedBrowser: recorded.browser,
-      recordedVersion: recorded.version, witnessVersion: recorded.witnessVersion ?? 1, visualViewportCompared,
+      recordedVersion: recorded.version, witnessVersion: recorded.witnessVersion ?? 1, visualViewportCompared, documentWidthCapCompared,
       sameBytes: sha256(bytes) === recorded.sha256.reduced, otherRequestsBlocked: blocked.length };
   } finally { await browser.close(); }
 }

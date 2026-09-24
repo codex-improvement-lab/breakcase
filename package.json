@@ -1,6 +1,6 @@
 {
   "name": "@codex-improvement-lab/breakcase",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "Turn a selected layout overflow into a small, independently runnable HTML/CSS reproduction.",
   "type": "module",
   "license": "MIT",

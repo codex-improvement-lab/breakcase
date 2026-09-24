@@ -23,7 +23,7 @@ Node.js 22+ is required. The package is distributed as a GitHub release tarball;
 it is not published to the npm registry.
 
 ```sh
-npm install --save-dev https://github.com/codex-improvement-lab/breakcase/releases/download/v0.1.0-alpha.2/codex-improvement-lab-breakcase-0.1.0-alpha.2.tgz
+npm install --save-dev https://github.com/codex-improvement-lab/breakcase/releases/download/v0.1.0-alpha.3/codex-improvement-lab-breakcase-0.1.0-alpha.3.tgz
 npx breakcase install-browser
 npx breakcase demo --out ./demo-case
 ```
@@ -128,12 +128,16 @@ Every accepted deletion must retain the target text digest, viewport width and
 its document X, width, height, text width, scroll width and visible right extent
 within one CSS pixel. It also retains visual viewport width within one CSS pixel
 and visual scale within 0.001, so removing mobile viewport metadata cannot pass by
-zooming the result out. Scroll position is separate from document geometry. The
-final file is opened in a fresh context and checked again.
+zooming the result out. A candidate may make the document narrower by removing
+unrelated content, but may not make it more than one CSS pixel wider than the
+source. This catches newly introduced page overflow without demanding that all
+unrelated content survive. Scroll position is separate from document geometry.
+The final file is opened in a fresh context and checked again.
 
-New results use `witnessVersion: 2`. Old results remain checkable under their
-recorded contract; `check` reports `visualViewportCompared: false` when the old
-record lacks these fields. A legacy check is not a visual-viewport validation.
+New results use `witnessVersion: 3`. Old results remain checkable under their
+recorded contract; `check` reports `visualViewportCompared: false` when an old
+record lacks visual fields, and `documentWidthCapCompared: false` for every
+record before version 3. Older checks do not retroactively apply new fields.
 
 This preserves a specific observation, not all styling, application interactions,
 accessibility behavior or the original root cause. Fonts, browser versions and

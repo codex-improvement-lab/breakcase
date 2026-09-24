@@ -74,14 +74,17 @@ try {
     const output = values.out ? path.resolve(values.out) : undefined;
     const summary = { status: result.status, version, message: result.message, output,
       recordedVersion: result.recordedVersion, witnessVersion: result.witnessVersion,
-      visualViewportCompared: result.visualViewportCompared, capture: result.capture,
+      visualViewportCompared: result.visualViewportCompared,
+      documentWidthCapCompared: result.documentWidthCapCompared, capture: result.capture,
       bytes: result.bytes, reduction: result.reduction, sameBytes: result.sameBytes,
       otherRequestsBlocked: result.otherRequestsBlocked,
       report: output ? path.join(output, "report.html") : undefined,
       result: output ? path.join(output, "result.json") : undefined };
     if (json) process.stdout.write(JSON.stringify(summary) + "\n");
     else process.stdout.write(`${result.status}: ${result.message ?? (result.visualViewportCompared === false
-      ? "Saved legacy witness checked; visual viewport was not recorded." : "Saved witness checked.")}\n${output ? `Report: ${path.join(output, "report.html")}\n` : ""}`);
+      ? "Saved legacy witness checked; visual viewport was not recorded."
+      : result.documentWidthCapCompared === false ? "Saved earlier witness checked; document-width cap was not recorded."
+      : "Saved witness checked.")}\n${output ? `Report: ${path.join(output, "report.html")}\n` : ""}`);
     process.exitCode = result.status === "reproduced" ? 0 : ["no-overflow", "not-reproduced"].includes(result.status) ? 1 : 2;
   }
 } catch (error) {

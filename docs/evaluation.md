@@ -53,6 +53,17 @@ Alpha.2 adds regressions for CORS-permitted stylesheet retrieval and mobile visu
 viewport preservation. The [Bootstrap follow-up](bootstrap-cases.md) records the
 real capture gap, the weaker-contract counterexample and corrected baseline runs.
 
+Alpha.3 adds a document-width upper bound to newly generated witnesses. In one
+internal two-agent handoff on a held-out Bootstrap Modal page, both arms made
+valid offline files. The first direct-script candidate passed the version-2
+selected-target check but made the document 435 pixels wide where the source
+was 385; its operator caught this during review and corrected it. The product
+first produced a reviewed file at 112.810 seconds and the direct-script path
+at 198.289 seconds on this input. Documentation and one tool-call rejection
+confounded total handoff times. The supplied source, target, browser and oracle
+exclude real task discovery costs. This is internal evidence, not independent
+adoption or a general speed claim.
+
 ## What remains unknown
 
 The [initial historical cases](historical-cases.md) and subsequent

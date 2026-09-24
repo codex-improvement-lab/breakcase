@@ -44,8 +44,10 @@ export function hasOverflow(value) {
     && value.effectiveRight > value.viewportWidth + 1;
 }
 
-export function matches(before, after) {
+export function matches(before, after, { documentWidthCap = true } = {}) {
   if (!hasOverflow(after) || after.textSha256 !== before.textSha256 || after.viewportWidth !== before.viewportWidth) return false;
+  if (documentWidthCap && (!Number.isFinite(before.documentWidth) || !Number.isFinite(after.documentWidth)
+    || after.documentWidth > before.documentWidth + 1)) return false;
   if (Number.isFinite(before.visualViewportWidth) && Number.isFinite(before.visualViewportScale)) {
     if (!Number.isFinite(after.visualViewportWidth) || !Number.isFinite(after.visualViewportScale)
       || Math.abs(before.visualViewportWidth - after.visualViewportWidth) > 1

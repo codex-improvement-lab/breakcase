@@ -7,7 +7,7 @@ import { createServer } from "node:http";
 import { pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 import { checkReproduction, reduceOverflow } from "../src/index.js";
-import { sha256 } from "../src/witness.js";
+import { matches, observe, sha256 } from "../src/witness.js";
 
 const profile = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 };
 let browser, temp;
@@ -193,10 +193,11 @@ test("mobile file recheck rejects zoom changes that preserve the layout viewport
   try {
     const result = await reduceOverflow({ page, selector: "#target", profile: mobile, outputDir });
     assert.equal(result.status, "reproduced", result.message);
-    assert.equal(result.witnessVersion, 2);
+    assert.equal(result.witnessVersion, 3);
     const file = path.join(outputDir, "repro.html"), resultFile = path.join(outputDir, "result.json");
     const original = await checkReproduction({ file, resultFile });
     assert.equal(original.status, "reproduced"); assert.equal(original.visualViewportCompared, true);
+    assert.equal(original.documentWidthCapCompared, true);
     const scaledFile = path.join(temp, "mobile-autoscale.html");
     await writeFile(scaledFile, (await readFile(file, "utf8")).replace("width=device-width,initial-scale=1", "width=device-width"));
     const scaled = await checkReproduction({ file: scaledFile, resultFile });
@@ -209,7 +210,55 @@ test("mobile file recheck rejects zoom changes that preserve the layout viewport
     const legacyFile = path.join(temp, "legacy-witness.json"); await writeFile(legacyFile, JSON.stringify(legacy));
     const legacyCheck = await checkReproduction({ file, resultFile: legacyFile });
     assert.equal(legacyCheck.status, "reproduced"); assert.equal(legacyCheck.visualViewportCompared, false);
+    assert.equal(legacyCheck.documentWidthCapCompared, false);
     legacy.witnessVersion = 2; await writeFile(legacyFile, JSON.stringify(legacy));
     await assert.rejects(checkReproduction({ file, resultFile: legacyFile }), /requires visual viewport/);
+  } finally { await context.close(); }
+});
+
+test("new witness rejects a wider unrelated overflow; earlier records retain their saved scope", async () => {
+  const { context, page } = await source(fixture);
+  try {
+    const outputDir = path.join(temp, "document-width-cap");
+    const result = await reduceOverflow({ page, selector: "#target", profile, outputDir });
+    assert.equal(result.status, "reproduced", result.message);
+    assert.equal(result.witnessVersion, 3);
+    const file = path.join(outputDir, "repro.html"), resultFile = path.join(outputDir, "result.json");
+    const widerFile = path.join(temp, "added-unrelated-overflow.html");
+    await writeFile(widerFile, (await readFile(file, "utf8")) + '<div style="width:1100px;height:1px"></div>');
+    const fresh = await browser.newContext(profile), widened = await fresh.newPage();
+    try {
+      await widened.goto(pathToFileURL(widerFile).href);
+      const after = await observe(widened, "#target");
+      assert.equal(after.textSha256, result.before.textSha256);
+      assert.equal(after.width, result.before.width);
+      assert.equal(after.effectiveRight, result.before.effectiveRight);
+      assert.ok(after.documentWidth > result.before.documentWidth + 1);
+      assert.equal(matches(result.before, after), false);
+      assert.equal(matches(result.before, after, { documentWidthCap: false }), true);
+    } finally { await fresh.close(); }
+    const newCheck = await checkReproduction({ file: widerFile, resultFile });
+    assert.equal(newCheck.status, "not-reproduced");
+    assert.equal(newCheck.documentWidthCapCompared, true);
+    const old = structuredClone(result); old.witnessVersion = 2; old.version = "0.1.0-alpha.2";
+    const oldFile = path.join(temp, "v2-witness.json"); await writeFile(oldFile, JSON.stringify(old));
+    const oldCheck = await checkReproduction({ file: widerFile, resultFile: oldFile });
+    assert.equal(oldCheck.status, "reproduced");
+    assert.equal(oldCheck.visualViewportCompared, true);
+    assert.equal(oldCheck.documentWidthCapCompared, false);
+    const malformed = structuredClone(result); delete malformed.before.documentWidth;
+    await writeFile(oldFile, JSON.stringify(malformed));
+    await assert.rejects(checkReproduction({ file, resultFile: oldFile }), /requires original document width/);
+  } finally { await context.close(); }
+});
+
+test("document-width cap permits removing a wider unrelated overflow", async () => {
+  const { context, page } = await source(fixture + '<div style="width:1100px;height:1px"></div>');
+  try {
+    const before = await observe(page, "#target");
+    await page.setContent(fixture);
+    const after = await observe(page, "#target");
+    assert.ok(after.documentWidth < before.documentWidth);
+    assert.equal(matches(before, after), true);
   } finally { await context.close(); }
 });

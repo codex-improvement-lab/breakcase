@@ -36,13 +36,15 @@ try {
   assert.equal(demo.version, metadata.version);
   const checked = JSON.parse(await run(process.execPath, [cli, "check", path.join(out, "repro.html"), "--result", path.join(out, "result.json"), "--json"], temp));
   assert.equal(checked.status, "reproduced"); assert.equal(checked.sameBytes, true);
-  assert.equal(checked.visualViewportCompared, true); assert.equal(checked.witnessVersion, 2);
+  assert.equal(checked.visualViewportCompared, true); assert.equal(checked.witnessVersion, 3);
+  assert.equal(checked.documentWidthCapCompared, true);
   const legacy = JSON.parse(await readFile(path.join(out, "result.json"), "utf8"));
   delete legacy.witnessVersion; delete legacy.before.visualViewportWidth; delete legacy.before.visualViewportScale;
   legacy.version = "0.1.0-alpha.1"; legacy.witness = "Legacy layout dimensions";
   const legacyFile = path.join(temp, "legacy.json"); await writeFile(legacyFile, JSON.stringify(legacy));
   const legacyCheck = JSON.parse(await run(process.execPath, [cli, "check", path.join(out, "repro.html"), "--result", legacyFile, "--json"], temp));
   assert.equal(legacyCheck.status, "reproduced"); assert.equal(legacyCheck.visualViewportCompared, false);
+  assert.equal(legacyCheck.documentWidthCapCompared, false);
   assert.equal(legacyCheck.witnessVersion, 1);
   const refused = JSON.parse(await run(process.execPath, [cli, "demo", "--out", out, "--json"], temp, 2));
   assert.equal(refused.status, "error"); assert.match(refused.message, /EEXIST/);
